@@ -1,0 +1,87 @@
+<section id="bestseller-section" class="section">
+    <div class="bestseller-inner">
+        <div class="bestseller-title">
+            <h1>{{ section.settings.title }}</h1>
+            <p>{{ section.settings.subtitle }}</p>
+        </div>
+
+        <div class="bestseller-collection-grid">
+            {% assign collection = collections[section.settings.collection] %}
+            {% for product in collection.products limit:8 %}
+                <div class="bestseller__product-card">
+                    <a class="bestseller__product-card__link" href="{{ product.url }}"></a>
+                    <div class="bestseller__product-card__top">
+                        <div class="bestseller__product-card__image talign-center">
+                            <img src="{{ product.featured_image.src | img_url: '150x' }}" alt="{{ product.featured_image.alt | escape }}">
+                        </div>
+                    </div>
+
+                    <div class="bestseller__product-card__bottom">
+                        <div class="bestseller__product-card__title">
+                            <h2>{{ product.title | truncate: 40 }}</h2>
+                        </div>
+    
+                        <div class="bestseller__product-card__price">
+                            <p class="product-card__vendor">{{ product.vendor }}</p>
+                            <div class="bestseller__product-card__price__inner">
+                                <p>{{ product.price | money_without_trailing_zeros }}</p>
+                                {% if product.compare_at_price %}
+                                    <span class="bestseller__product-card__compare_at_price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="bestseller-cta talign-center">
+            <a href="{{ section.settings.button_url }}" class="btn">{{ section.settings.button_text }}</a>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Bestseller Section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Bestseller Title"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Bestseller Subtitle"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text"
+        },
+        {
+            "type": "text",
+            "id": "button_url",
+            "label": "Button Link"
+        }
+    ],
+    "presets": [
+        {
+            "category": "besteller_section",
+            "name": "Bestseller Section",
+            "settings": {
+                "title": "Vores Mest Solgte Produkter",
+                "subtitle": "Dette er vores kunders favoritter. Måske kan det også blive dine?",
+                "button_text": "SE MERE I SHOPPEN",
+                "button_url": "/products"
+            }
+        }
+    ]
+}
+{% endschema %}

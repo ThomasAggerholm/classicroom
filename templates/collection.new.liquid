@@ -1,0 +1,51 @@
+<div id="collection" class="section">
+  <div class="collection__top">
+      <h1 class="collection__title">{{ collection.title }}</h1>
+      <p class="collection__description">{{ 'collection.top.description' | t }}</p>
+  </div>
+
+  
+      
+  
+
+  <div class="mobile-filter-toggle">
+    <p class="filter-toggle__text">
+      <span class="filter_toggle_closed">{{ 'collections.sorting.mobile_toggle' | t }}</span>
+      <span class="filter_toggle_open">{{ 'collections.sorting.mobile_toggle_open' | t }}</span>
+    </p>
+    <span class="open-icon"><img src="{{ 'open-linklist.svg' | asset_url }}" alt="icon"></span>
+  </div>
+
+  <div class="collection__product-section">
+    <div class="collection__filtering-section">
+
+      {% include 'sort-by' %}
+      
+      {% section 'collection-category-section' %}
+
+      {% section 'collection-brand-section' %}
+
+      {% assign hasColors = false %}
+      {% for tag in collection.all_tags %}
+        {% if tag contains 'color_' %}
+          {% assign hasColors = true %}
+        {% endif %}
+      {% endfor %}
+
+      {% if hasColors == true %}
+        {% section 'collection-color-swatch' %}
+      {% endif %}
+
+    </div> <!-- /filtrering section -->
+
+    <div class="collection__products">
+        <div class="collection__product-grid">
+          {% for product in collection.products limit:18 %}
+              {% include 'product-card' %}
+          {% else %}
+            <p>{{ 'collection.bottom.no_matches' | t }}</p>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>

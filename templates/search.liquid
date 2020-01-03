@@ -1,0 +1,21 @@
+{% paginate search.results by 9 %}
+  {% if search.performed %}
+    <div id="collection" class="section">
+      <div class="collection__top">
+          <h1 class="collection__title">Resultater for "{{ search.terms }}"</h1>
+      </div>
+
+      <div class="collection__product-section">
+        <div id="search__collection__products" class="collection__products">
+            <div class="collection__product-grid">
+              {% for item in search.results %}
+                  {% include 'search-product-card' %}
+              {% else %}
+                <p>Ingen produkter passer til din søgning.</p>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+    </div>
+{% endif %}
+{% endpaginate %}

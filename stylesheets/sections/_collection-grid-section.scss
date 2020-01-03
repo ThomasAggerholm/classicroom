@@ -1,0 +1,232 @@
+#collection-grid {
+    background: $color-beige;
+    padding: 170px 70px 100px;
+    margin-top: -50px;
+    @media (max-width: 900px) {
+        padding: 120px 20px 80px;
+    }
+
+    .collection-grid__inner {
+        .collection-grid__title {
+            margin-bottom: 50px;
+            
+            h1 {
+                color: $color-white;
+            }
+        }
+
+        .collection-grid__grid {
+            display: flex;
+            margin: -10px;
+            @media (max-width: 1300px) {
+                min-height: 470px;
+            }
+
+            @media (max-width: 900px) {
+                min-height: 1000px;
+                flex-flow: column;
+                margin: 0;
+            }
+
+            .grid-item-two-rows {
+                display: flex;
+                flex-flow: column;
+                margin-right: 10px;
+            }
+
+            .grid-item {
+                height: 100%;
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+
+                .grid-item__link {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 10;
+                }
+
+                .grid-item__content {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                    padding: 50px;
+                    color: $color-white;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    h2 {
+                        margin-bottom: 30px;
+
+                        @media (max-width: 1300px) {
+                            font-size: 24px;
+                        }
+                    }
+
+                    .btn {
+                        color: $color-white;
+
+                        &:before,
+                        &:after {
+                            background: $color-white;
+                        }
+                    }
+                }
+
+                .bg-overlay {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    background: rgba(0,0,0,0.3);
+                    z-index: 1;
+                }
+                
+                .bg {
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-color: #f1f1f1;
+                    width: 100%;
+                    height: 100%;
+                    overflow: hidden;
+                    transition: .3s ease-in-out;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            .grid-item1 {
+                min-height: 560px;
+                background-color: $color-white;
+                margin: 10px;
+                &:hover .btn:before {
+                    left: 100%;
+                    width: 0;
+                }
+                &:hover .btn:after {
+                    animation: btnHoverAfter .3s forwards ease-out;
+                    animation-delay: .3s;
+                }
+                @media (max-width: 900px) {
+                    margin: 0 0 20px 0;
+                }
+                @media (max-width: 500px) {
+                    min-height: 400px;
+                }
+            }
+
+            .grid-item2 {
+                min-height: 560px;
+                background-color: $color-white;
+                margin: 10px;
+                &:hover .btn:before {
+                    left: 100%;
+                    width: 0;
+                }
+                &:hover .btn:after {
+                    animation: btnHoverAfter .3s forwards ease-out;
+                    animation-delay: .3s;
+                }
+                @media (max-width: 900px) {
+                    margin: 0 0 20px 0;
+                }
+                @media (max-width: 500px) {
+                    min-height: 400px;
+                }
+            }
+            .grid-item3 {
+                min-height: 270px;
+                background-color: $color-white;
+                margin: 10px;
+                &:hover .btn:before {
+                    left: 100%;
+                    width: 0;
+                }
+                &:hover .btn:after {
+                    animation: btnHoverAfter .3s forwards ease-out;
+                    animation-delay: .3s;
+                }
+                @media (max-width: 900px) {
+                    margin: 0 0 20px 0;
+                }
+                @media (max-width: 500px) {
+                    min-height: 200px;
+                }
+            }
+            .grid-item4 {
+                min-height: 270px;
+                background-color: $color-white;
+                margin: 10px;
+                &:hover .btn:before {
+                    left: 100%;
+                    width: 0;
+                }
+                &:hover .btn:after {
+                    animation: btnHoverAfter .3s forwards ease-out;
+                    animation-delay: .3s;
+                }
+                @media (max-width: 900px) {
+                    margin: 0 0 20px 0;
+                }
+                @media (max-width: 500px) {
+                    min-height: 200px;
+                }
+            }
+            .grid-item5 {
+                min-height: 270px;
+                background-color: $color-white;
+                margin: 10px;
+                &:hover .btn:before {
+                    left: 100%;
+                    width: 0;
+                }
+                &:hover .btn:after {
+                    animation: btnHoverAfter .3s forwards ease-out;
+                    animation-delay: .3s;
+                }
+                @media (max-width: 900px) {
+                    margin: 0 0 20px 0;
+                }
+                @media (max-width: 500px) {
+                    min-height: 200px;
+                }
+            }
+            .grid-item6 {
+                min-height: 270px;
+                background-color: $color-white;
+                margin: 10px;
+                &:hover .btn:before {
+                    left: 100%;
+                    width: 0;
+                }
+                &:hover .btn:after {
+                    animation: btnHoverAfter .3s forwards ease-out;
+                    animation-delay: .3s;
+                }
+                @media (max-width: 900px) {
+                    margin: 0 0 20px 0;
+                }
+                @media (max-width: 500px) {
+                    min-height: 200px;
+                }
+            }
+        }
+    }
+}

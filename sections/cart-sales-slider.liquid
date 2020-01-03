@@ -1,0 +1,67 @@
+<section id="cart-sales-slider" class="section">
+    <div class="cart-sales-slider__inner">
+        <div class="cart-sales-slider__title">
+            <h1>{{ section.settings.title }}</h1>
+        </div>
+    </div>
+    <div class="cart-sales-slider__controls">
+        <div class="cart-slider-prev">
+            <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                <title>Rectangle</title>
+                <desc>Created with Sketch.</desc>
+                <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#ffffff" stroke-width="1.5">
+                        <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                            <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <div class="cart-slider-next">
+            <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                <title>Rectangle</title>
+                <desc>Created with Sketch.</desc>
+                <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#ffffff" stroke-width="1.5">
+                        <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                            <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <div class="cart-sales-slider__wrapper">
+        <div class="cart-sales-slider">
+            {% assign collection = collections[section.settings.collection] %}
+            {% for product in collection.products %}
+                {% include 'product-card' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Cart Sales Slider",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        }
+    ]
+}
+{% endschema %}

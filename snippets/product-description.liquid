@@ -1,0 +1,54 @@
+<div class="product-description__inner">
+    <div class="product-description__column-one">
+        <h4>{{ 'product.description.design' | t }}</h4>
+        <p>{{ product.vendor }}</p>
+    </div>
+
+    <div class="product-description__column-two">
+        <h4>{{ 'product.description.description' | t }}</h4>
+        <p>{{ product.description }}</p>
+    </div>
+
+    {% assign specifications = '' %}
+    {% assign materials = '' %}
+
+    {% for tag in product.tags %}
+        {% if tag contains '__spec:' %}
+            {% capture specifications %}{% if specifications != blank %}{{ specifications }},{% endif %}{{ tag | replace: '__spec:','' }}{% endcapture %}
+        {% endif %}
+
+        {% if tag contains '__mats:' %}
+            {% capture materials %}{% if materials != blank %}{{ materials }},{% endif %}{{ tag | replace: '__mats:','' }}{% endcapture %}
+        {% endif %}
+
+    {% endfor %}
+
+    {% assign specifications = specifications | split: ',' %}
+    {% assign materials = materials | split: ',' %}
+
+    <div class="product-description__column-three">
+        <h4>{{ 'product.description.specs' | t }}</h4>
+        {% if specifications != blank %}
+            <ul class="product-description__specs-list">
+                {% for specification in specifications %}
+                    <li>{{ specification }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Ingen angivet...</p>
+        {% endif %}
+    </div>
+
+    <div class="product-description__column-four">
+        <h4>{{ 'product.description.mats' | t }}</h4>
+        {% if materials != blank %}
+            <ul class="product-description__mats-list">
+                {% for material in materials %}
+                    <li>{{ material }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-description">Ingen angivet...</p>
+    {% endif %}
+    </div>
+</div>

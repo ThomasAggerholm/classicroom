@@ -1,0 +1,31 @@
+{% assign linkList = linklists[handle] %}
+<ul class="linklist">
+    {% for link in linkList.links %}
+        <li class="linklist__item{% if link.levels > 0 %} has-child-list{% endif %}">
+            <a class="linklist__item-link{% if link.active %} active-link{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+            {% if link.links != blank %}
+                <div class="child-linklist__wrapper">
+                    <ul class="child-linklist">
+                        {% for child_link in link.links %}
+                            <li class="child-linklist__item{% if link.levels > 1 %} has-child-list{% endif %}">
+                                <a class="child-linklist__item__link" href="{{ child_link.url }}">
+                                    {{ child_link.title }}</a>
+                                {% if link.links != blank %}
+                                    <div class="grandchild-linklist__wrapper">
+                                        <ul class="grandchild-linklist">
+                                            {% for grandchild_link in child_link.links %}
+                                                <li class="grandchild-linklist__item">
+                                                    <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>

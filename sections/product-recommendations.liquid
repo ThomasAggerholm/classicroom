@@ -1,0 +1,140 @@
+<section id="recommended-products" class="section">
+    <div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="10">
+    <div class="recommended-products__inner">
+    {%- if recommendations.products_count > 0 -%}
+
+        <div class="recommended-products__title">
+            <h1>Andre kunder købte også</h1>
+        </div>
+    </div>
+
+    <div class="recommended-product-slider__controls">
+        <div class="recommended-prev">
+            <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                <title>Rectangle</title>
+                <desc>Created with Sketch.</desc>
+                <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#ffffff" stroke-width="1.5">
+                        <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                            <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <div class="recommended-next">
+            <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                <title>Rectangle</title>
+                <desc>Created with Sketch.</desc>
+                <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#ffffff" stroke-width="1.5">
+                        <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                            <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <div class="recommended-product-slider__wrapper">
+        <div class="recommended-product-slider">
+            {%- for product in recommendations.products limit: section.settings.product_count -%}
+                {% include 'product-card' %}
+            {%- endfor -%}
+        </div>
+    </div>
+
+    {%- endif -%}
+    </div>
+</section>
+
+<script>
+var loadProductRecommendationsIntoSection = function() {
+// Look for an element with class 'product-recommendations'
+var productRecommendationsSection = document.querySelector(".product-recommendations");
+if (productRecommendationsSection === null) { return; }
+// Read product id from data attribute
+var productId = productRecommendationsSection.dataset.productId;
+// Read limit from data attribute
+var limit = productRecommendationsSection.dataset.limit;
+// Build request URL
+var requestUrl = "/recommendations/products?section_id=product-recommendations&limit="+limit+"&product_id="+productId;
+// Create request and submit it using Ajax
+var request = new XMLHttpRequest();
+request.open("GET", requestUrl);
+request.onload = function() {
+    if (request.status >= 200 && request.status < 300) {
+    var container = document.createElement("div");
+    container.innerHTML = request.response;
+    productRecommendationsSection.parentElement.innerHTML = container.querySelector(".product-recommendations").innerHTML;
+    
+    $('.recommended-product-slider').slick({
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      infinite: false,
+      prevArrow: '.recommended-prev',
+      nextArrow: '.recommended-next',
+      responsive: [
+        {
+          breakpoint: 900,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+          breakpoint: 500,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+
+    }
+};
+request.send();
+};
+// If your section has theme settings, the theme editor
+// reloads the section as you edit those settings. When that happens, the
+// recommendations need to be fetched again.
+// See https://help.shopify.com/en/themes/development/sections/integration-with-theme-editor
+document.addEventListener("shopify:section:load", function(event) {
+if (event.detail.sectionId === "product-recommendations") {
+    loadProductRecommendationsIntoSection();
+}
+});
+// Fetching the recommendations on page load
+loadProductRecommendationsIntoSection();
+</script>
+
+{% schema %}
+{
+    "name": "Product Recommendations",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type":      "range",
+            "id":        "product_count",
+            "min":       4,
+            "max":        12,
+            "step":       1,
+            "unit":       "prd",
+            "label":     "Products",
+            "default":   10
+        }
+    ]
+}
+{% endschema %}

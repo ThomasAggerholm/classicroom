@@ -1,0 +1,24 @@
+<div class="product-card">
+    <a class="product-card__link" href="{{ product.url | within: collection }}"></a>
+    <div class="product-card__top">
+        <div class="product-card__image talign-center">
+            <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+        </div>
+    </div>
+
+    <div class="product-card__bottom">
+        <div class="product-card__title">
+            <h2>{{ product.title }}</h2>
+        </div>
+    
+        <div class="product-card__price">
+            <p class="product-card__vendor">{{ product.vendor }}</p>
+            <div class="product-card__price__inner">
+                <p>{{ product.price | money_without_trailing_zeros }}</p>
+                {% if product.compare_at_price %}
+                    <span class="product-card__compare_at_price">{{ product.compare_at_price | money_without_trailing_zeros }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>    
+</div>

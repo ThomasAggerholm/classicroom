@@ -1,0 +1,160 @@
+#bestseller-section {
+    z-index: 2;
+
+    .bestseller-inner {
+        background: $color-offwhite;
+        margin: 100px 20px 0 20px;
+        padding: 50px 50px 100px;
+        opacity: 0;
+        transform: translateY(20px);
+
+        .bestseller-title {
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+
+            h1 {
+                max-width: 408px;
+
+                @media (max-width: 900px) {
+                    margin-bottom: 30px;
+                }
+            }
+
+            p {
+                max-width: 260px;
+                font-size: $font-size-sm;
+                line-height: $line-height-sm;
+                letter-spacing: -.2em;
+            }
+
+            @media (max-width: 900px) {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 900px) {
+            margin: 80px 0 0 0;
+            padding: 20px;
+        }
+    }
+
+    .bestseller-collection-grid {
+        margin: -10px;
+        display: flex;
+        flex-flow: row wrap;
+        margin-bottom: 45px;
+
+        .bestseller__product-card {
+            background: $color-white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 378px;
+            transition: .3s ease-in-out;
+            cursor: pointer;
+            position: relative;
+            width: calc(25% - 20px);
+            margin: 10px;
+            @media (max-width: 900px) {
+                width: calc(50% - 20px);
+            }
+            @media (max-width: 700px) {
+                width: calc(100% - 20px);
+            }
+
+            .bestseller__product-card__link {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            .bestseller__product-card__top {
+                margin: auto 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+        
+                .bestseller__product-card__image {
+                    margin-bottom: 15px;
+        
+                    img {
+                        max-width: 100%;
+                        max-height: 300px;
+                    }
+                }
+            }
+
+            .bestseller__product-card__title {
+                margin-bottom: 10px;
+
+                h2 {
+                    font-size: 24px;
+                    line-height: 24px;
+                    font-weight: 400;
+                    color: $color-dark;
+                    transition: .3s ease-in-out;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .bestseller__product-card__price {
+                p {
+                    font-size: $font-size-sm;
+                    line-height: $line-height-sm;
+                    color: $color-dark;
+                }
+
+                .product-card__vendor {
+                    color: $color-brown-grey;
+                    margin-bottom: 10px;
+                }
+
+                .bestseller__product-card__price__inner {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 10px;
+        
+                    .bestseller__product-card__compare_at_price {
+                        font-size: 10px;
+                        color: $color-brown-grey;
+                        text-decoration: line-through;
+                        margin-left: 15px;
+                    }
+                }
+            }
+
+            &:hover {
+                box-shadow: 0 15px 16px 0 rgba(0,0,0,0.12);
+            }
+
+            &:hover .bestseller__product-card__title h2 {
+                color: $color-medium-grey;
+            }
+
+            @media (max-width: 900px) {
+                &:nth-child(1n+5) {
+                    display: none;
+                }
+            }
+        }
+
+        @media (max-width: 900px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 500px) {
+            grid-template-columns: 1fr;
+            margin-bottom: 50px;
+        }
+    }
+
+    .bestseller-cta {
+        @media (max-width: 900px) {
+            margin-bottom: 50px;
+        }
+    }
+}

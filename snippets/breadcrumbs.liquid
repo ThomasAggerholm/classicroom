@@ -1,0 +1,52 @@
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' or template == 'collection' or template == 'page.contact' or template == '404' or template == 'page.thanks' or template == 'search' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <a class="breadcrumbs__home" href="/" title="Home">Forside</a>
+  {% if template contains 'page' %}
+    <span aria-hidden="true">&rsaquo;</span>
+    <span class="breadcrumb__title">{{ page.title }}</span>
+  {% elsif template contains 'product' %}
+    {% if collection.url %}
+      <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+      <span class="breadcrumb__title">{{ collection.title | link_to: collection.url }}</span>
+    {% endif %}
+    <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+    <span class="breadcrumb__title">{{ product.title }}</span>
+  {% elsif template contains 'collection' and collection.handle %}
+    <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+    {% if current_tags %}
+      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+      {% assign display_tags = '' %}
+      {% for tag in current_tags %}
+        {% assign t = tag | remove: 'color_' | remove: '@' | split: '%' %}
+        {% if forloop.last %}
+          {% assign display_tags = display_tags | append: t.first | capitalize %}
+        {% else %}
+          {% assign display_tags = display_tags | append: t.first | append: ' + ' | capitalize %}
+        {% endif %}
+      {% endfor %}
+      <span class="breadcrumb__title">{{ collection.title | link_to: url }}</span>
+      <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+      <span class="breadcrumb__title">{{ display_tags | remove_last: '+' }}</span>
+    {% else %}
+      <span class="breadcrumb__title">{{ collection.title }}</span>
+    {% endif %}
+  {% elsif template == 'blog' %}
+    <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+    {% if current_tags %}
+      {{ blog.title | link_to: blog.url }}
+      <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+    <span class="breadcrumb__title">{{ blog.title }}</span>
+    {% endif %}
+  {% elsif template == 'article' %}
+    <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+    {{ blog.title | link_to: blog.url }}
+    <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+    <span class="breadcrumb__title">{{ article.title }}</span>
+  {% else %}
+   <span class="breadcrumb__arrow" aria-hidden="true">&rsaquo;</span>
+   <span class="breadcrumb__title">{{ page_title }}</span>
+  {% endif %}
+</nav>
+{% endunless %}

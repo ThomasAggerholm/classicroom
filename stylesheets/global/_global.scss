@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'LexendZetta', Arial, Helvetica, sans-serif;
+}
+
+body {
+    &.topbar-enabled {
+        main {
+            margin-top: 230px;
+        }
+    }
+}
+
+h1,
+.h1 {
+    margin: 0;
+    font-family: $font-family-BigCaslon;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 1.4;
+
+    @media (max-width: 500px) {
+        font-size: 42px;
+    }
+}
+
+h2,
+.h2 {
+    font-size: $font-size-mdl;
+    line-height: $line-height-mdl;
+    font-family: $font-family-BigCaslon;
+    font-weight: 400;
+}
+
+h3,
+.h3 {
+    font-size: $font-size-mdl;
+    line-height: $line-height-mdl;
+    font-family: $font-family-BigCaslon;
+    font-weight: 400;
+}
+
+h4,
+.h4 {
+    font-size: $font-size-md;
+    line-height: $line-height-md;
+    font-family: $font-family-BigCaslon;
+    font-weight: 400;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+//Buttons
+.btn {
+    position: relative;
+    display: inline-block;
+    color: $color-medium-grey;
+    font-size: $font-size-sm;
+    line-height: $line-height-sm;
+
+    &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        height: 1px;
+        width: 100%;
+        background: $color-medium-grey;
+        transition: .3s ease-out;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        height: 1px;
+        width: 0;
+        background: $color-medium-grey;
+    }
+
+    &:hover:before {
+        left: 100%;
+        width: 0;
+    }
+
+    @keyframes btnHover {
+        0% {
+            left: 0;
+            width: 100%;
+        }
+
+        100% {
+            left: 100%;
+            width: 0;
+        }
+
+    }
+
+    &:hover:after {
+        animation: btnHoverAfter .3s forwards ease-out;
+        animation-delay: .3s;
+    }
+
+    @keyframes btnHoverAfter {
+        0% {
+            left: 0;
+            width: 0;
+        }
+
+        100% {
+            left: 0;
+            width: 50%;
+        }
+    }
+}
+
+//Scroll To Top
+a#backToTop {
+    width:40px;
+    height:40px;
+    position:fixed;
+    bottom: 20px;
+    right: 20px;
+    display:none;
+    outline:none !important;
+    background: $color-medium-grey;
+    z-index: 9999;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 2.5;
+    opacity: .5;
+
+    svg {
+        transform: rotate(-90deg);
+    }
+}
+
+//Cookie Message
+#cookies-wrapper {
+    font-family: 'LexendZetta', Arial, Helvetica, sans-serif !important;
+    font-size: $font-size-sm !important;
+    letter-spacing: normal !important;
+    line-height: normal !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+
+    #cookies-message {
+        a {
+            text-transform: capitalize !important;
+            display: inline-block !important;
+            margin-left: 20px !important;
+        }
+    }
+
+    #cookies-submit {
+        background: $color-white;
+        justify-content: center;
+        align-items: center;
+
+        .ot-cookie {
+            border: none;
+            font-family: 'LexendZetta', Arial, Helvetica, sans-serif;
+            font-weight: 400px;
+            color: $color-medium-grey;
+            text-transform: capitalize;
+        }
+    }
+}
+
+// Styling of the search app
+.snize-title {
+    font-family: $font-family-BigCaslon !important;
+    font-size: 22px !important;
+    line-height: 1.4;
+}
+
+div.snize-ac-results span.snize-description {
+    text-transform: initial !important;
+    font-size: 14px;
+    line-height: 1.4;
+}

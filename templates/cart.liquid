@@ -1,0 +1,118 @@
+<div class="js-cart-page-contents" data-cart-item-count="{{ cart.item_count }}">
+  {% if cart.item_count > 0 %}
+  <div class="cart__top">
+      <h1 class="cart__title">Indkøbskurv</h1>
+  </div>
+
+  <div class="cart__inner">
+      <form id="cart-form" action="/cart" method="post" novalidate>
+        <div class="cart__bottom">
+          <div class="cart__line-items">
+              <div class="line-item__header">
+                <h3 class="line-item__header-title">Produkt</h3>
+                <h3 class="line-item__header-title">Antal</h3>
+                <h3 class="line-item__header-title">Pris</h3>
+              </div> <!-- /header -->
+
+              {% for item in cart.items %}
+                <div class="line-item__card-wrapper" data-item-id="{{ item.id }}">
+                  <div class="line-item__info">
+                      <a class="line-item__image" href="{{ item.url | within: collections.all }}">
+                        <img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+                      </a>
+
+                      <div class="line-item__title-wrapper">
+                          <a class="line-item__title" href="{{ item.url }}">{{ item.product.title }}{% if item.quantity > 1 %}<span> x {{ item.quantity }}</span>{% endif %}</a>
+                          <span class="line-item__vendor">{{ item.vendor }}</span>
+                      </div>
+                  </div> <!-- /image -->
+
+                  <div class="line-item__quantity-wrapper">
+                      <div class="cart-quantity__picker">
+                        <input class="visually-hidden data-quantity" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="1" max="{{ item.variant.inventory_quantity }}" data-max-quantity="{{ item.variant.inventory_quantity }}">
+
+                        <button class="quantity-button cart-quantity__minus">-</button>
+                        <span class="js-cart-quantity__new">{{ item.quantity }}</span>
+                        <button class="quantity-button cart-quantity__plus">+</button>
+                      </div>
+                      
+                      <a class="remove-line-item" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+                        <span class="remove__desktop">Slet vare</span>
+                        <span class="remove__mobile"><img src="{{ 'open-linklist.svg' | asset_url }}" alt="icon"></span>
+                      </a>
+                  </div> <!-- /quantity -->
+
+                  <div class="line-item__price-wrapper">
+                      <span class="line-item__price">{{ item.line_price | money_without_trailing_zeros }}</span>
+                      <span class="line-item__compare-at-price">{{ item.variant.compare_at_price | money_without_trailing_zeros }}</span>
+                      {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+                  </div> <!-- /price -->
+                </div>
+              {% endfor %}            
+          </div> <!-- /line-items -->
+
+          <div class="cart__total">
+            <div class="vat-toggles">
+              <div class="vat-toggles__wrapper">
+                <div class="vat-toggles__button incl-vat active">INKL. MOMS</div>
+                <div class="vat-toggles__button excl-vat">EKSL. MOMS</div>
+              </div>
+            </div>
+
+            <div class="total__price-wrapper">
+              <span class="total__title">Total</span>
+              <span class="total__price excl_vat">{{ cart.total_price | times: 0.75 | money_without_trailing_zeros }}</span>
+              <span class="total__price incl_vat active">{{ cart.total_price | money_without_trailing_zeros }}</span>
+            </div>
+            <span class="accept-conditions">
+              <input type="checkbox" id="agree"><label for="agree" class="accept-conditions-text">Jeg accepterer hermed <a href="/pages/handelsbetingelser" target="_blank">handelsbetingelserne</a></label>
+            </span>
+            <button id="checkout-button" type="submit" name="checkout">GÅ TIL SIKKER BETALING</button>
+          </div> <!-- /cart-total -->
+
+          <div class="cart__payment-cards">
+            <img src="{{ 'visa.svg' | asset_url }}" alt="visa">
+            <img src="{{ 'visa-electron.svg' | asset_url }}" alt="visa-electron">
+            <img src="{{ 'mastercard.svg' | asset_url }}" alt="mastercard">
+            <img src="{{ 'dankort.svg' | asset_url }}" alt="dankort">
+          </div>
+        </div> <!-- /cart-bottom -->
+      </form>
+
+      {% else %}
+
+        <h1 class="cart__title">Indkøbskurv</h1>
+        <div class="empty-cart-info">
+          <p class="empty-cart">Din indkøbskurv er tom</p>
+          <a href="/collections" class="cart-btn">GÅ TIL SHOPPEN</a>
+        </div>
+
+      {% endif %}
+  </div>
+</div>
+
+<div class="product-bulletpoints">
+  {% section 'product-bulletpoints' %}
+</div>
+
+{% section 'cart-sales-slider' %}
+
+<div id="terms-popup">
+  <div class="terms-popup__inner">
+    <div class="terms-popup__title">
+      <h2 class="h1">Ups!</h2>
+      <p class="terms-popup__text">Du skal acceptere handelsbetingelser, inden du kan fortsætte.</p>
+      <button class="terms-popup__button">Forstået</button>
+    </div>
+  </div>
+</div>
+
+<div class="max-quantity-popup">
+  <div class="max-quantity-popup__inner">
+    <div class="max-quantity-popup__title">
+      <h2 class="h1">Ups!</h2>
+      <p class="max-quantity-popup__text">Der er ikke flere af dette produkt på lager.</p>
+      <button class="max-quantity-popup__button">Forstået</button>
+    </div>
+  </div>
+</div>

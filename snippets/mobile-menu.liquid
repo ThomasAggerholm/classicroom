@@ -1,0 +1,20 @@
+<div id="mobile-menu">
+        <div class="mobile-menu__container">
+
+            
+
+            {% for block in section.blocks %}
+                {% assign collection = collections[block.settings.collection] %}
+                {% if block.settings.collection %}
+                    <div class="mobile-menu__column">
+                        <h1 class="mobile-menu__column-title"><a href="{{ collection.url }}">{{ collection.title }}</a></h1>
+                        <div class="mobile-menu__category-list">
+                        {% for product_type in collection.all_types %}
+                            {{ product_type | link_to_type }}
+                        {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>

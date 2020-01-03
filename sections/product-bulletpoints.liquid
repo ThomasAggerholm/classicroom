@@ -1,0 +1,46 @@
+<div class="product-bulletpoints__inner">
+    <div class="product-bulletpoints__image">
+        {% if section.settings.image %}
+            <div class="product-bulletpoints__bg" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')"></div>
+        {% else %}
+            <div class="product-bulletpoints__bg" style="background-image: url('{{ 'apartment-ceiling-chairs-1571460.jpg' | img_url: 'master' }}')"></div>
+        {% endif %}
+    </div>
+
+    <div class="product-bulletpoints__bulletpoints">
+        <div class="product-bulletpoints__bulletpoints__inner">
+            <div class="product-bullet">
+                <h3>{{ 'product.bulletpoints.delivery_title' | t }}</h3>
+                <p>{{ 'product.bulletpoints.delivery_text' | t }}</p>
+            </div>
+    
+            <div class="product-bullet">
+                <h3>{{ 'product.bulletpoints.customer_title' | t }}</h3>
+                <p>{{ 'product.bulletpoints.customer_text' | t }}</p>
+            </div>
+    
+            <div class="product-bullet">
+                <h3>{{ 'product.bulletpoints.bring_out_title' | t }}</h3>
+                <p>{{ 'product.bulletpoints.bring_out_text' | t }}</p>
+            </div>
+    
+            <div class="product-bullet">
+                <h3>{{ 'product.bulletpoints.happy_title' | t }}</h3>
+                <p>{{ 'product.bulletpoints.happy_text' | t }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Bulletpoints Image",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Choose Image"
+        }
+    ] 
+}
+{% endschema %}

@@ -1,0 +1,12 @@
+<div class="brands__card">
+    <a href="{{ block.settings.link }}" class="brands__card__link"></a>
+    <div class="brands__card__title">
+        <h3>{{ block.settings.title }}</h3>
+    </div>
+
+    <div class="brands__card__button">
+        <a class="btn" href="{{ block.settings.link }}">{{ block.settings.url_title }}</a>
+    </div>
+    <div class="brands__overlay"></div>
+    <div class="brands__image" style="background-image: url('{{ block.settings.image | img_url: 'large' }}')"></div>
+</div>

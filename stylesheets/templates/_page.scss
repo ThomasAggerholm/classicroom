@@ -1,0 +1,51 @@
+#page {
+    padding: 100px 70px;
+    @media (max-width: 900px) {
+        padding: 70px 20px;
+    }
+
+    #isp_search_result_page_container {
+        max-width: 1400px;
+    }
+
+    .page__wrapper {
+        max-width: 870px;
+        width: 100%;
+        margin: 0 auto;
+        @media (max-width: 900px) {
+            max-width: unset;
+        }
+
+        .page__title {
+            margin-bottom: 50px;
+        }
+
+        .page__content {
+            h1, h2, h3, h4, h5, h6 {
+                font-family: $font-family-BigCaslon;
+                letter-spacing: 1px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+            }
+
+            p {
+                font-size: $font-size-sm;
+                line-height: 1.6;
+            }
+
+            span {
+                width: 100%;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}

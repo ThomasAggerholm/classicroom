@@ -1,0 +1,54 @@
+<section id="collection-list" class="section">
+    <div class="collection-list__title-wrapper">
+        <h1 class="collection-list__title">{{ section.settings.title }}</h1>
+    </div>
+    
+    <div class="collection-list__collections-wrapper">
+        <div class="collection-list__grid">
+            {% for block in section.blocks %}
+                {% include 'collection-list__card' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Kategorier",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Kategorier titel"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "category_card",
+            "name": "Kategori",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Vælg baggrundsbillede"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Navn på kategori"
+                },
+                {
+                    "type": "text",
+                    "id": "url_title",
+                    "label": "Tekst på link"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Vælg linket til kategori"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

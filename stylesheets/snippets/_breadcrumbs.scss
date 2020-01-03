@@ -1,0 +1,29 @@
+.breadcrumb {
+    padding-left: 70px;
+    @media (max-width: 900px) {
+        padding: 0 20px;
+    }
+
+    .breadcrumbs__home {
+        font-size: 10px;
+        line-height: 1;
+        color: $color-brown-grey;
+        text-transform: capitalize !important;
+    }
+
+    .breadcrumb__arrow {
+        font-size: 10px;
+        color: $color-brown-grey;
+    }
+
+    .breadcrumb__title {
+        font-size: 10px;
+        color: $color-dark;
+        text-transform: capitalize;
+
+        a {
+            color: $color-dark;
+            text-transform: capitalize;
+        }
+    }
+}

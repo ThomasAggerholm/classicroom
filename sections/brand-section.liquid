@@ -1,0 +1,54 @@
+<section id="brands" class="section">
+    <div class="brands__title-wrapper">
+        <h1 class="brands__title">{{ section.settings.title }}</h1>
+    </div>
+    
+    <div class="brands__brand-wrapper">
+        <div class="brands__grid">
+            {% for block in section.blocks %}
+                {% include 'brands__card' %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Brands",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Brands titel"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "category_card",
+            "name": "Brand",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Vælg baggrundsbillede"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Navn på brand"
+                },
+                {
+                    "type": "text",
+                    "id": "url_title",
+                    "label": "Tekst på link"
+                },
+                {
+                    "type": "url",
+                    "id": "link",
+                    "label": "Vælg linket til brand"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

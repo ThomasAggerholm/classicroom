@@ -1,0 +1,44 @@
+.linklist-image-container {
+    position: relative;
+    max-width: 400px;
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .linklist-image {
+        max-width: 400px;
+        width: 100%;
+        display: block;
+    }
+
+    .linklist-image-title {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $color-white;
+    }
+
+    .linklist-image-text {
+        position: absolute;
+        bottom: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: $color-white !important;
+        &:hover {
+            color: $color-white !important;
+        }
+        &:before {
+            background: $color-white;
+        }
+        &:after {
+            background: $color-white;
+        }
+    }
+}

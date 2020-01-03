@@ -1,0 +1,13 @@
+<div class="collection-list__card">
+    <a class="collection-list__card__link" href="{{ block.settings.link }}"></a>
+   
+    <div class="collection-list__card__title">
+        <h3>{{ block.settings.title }}</h3>
+    </div>
+
+    <div class="collection-list__card__button">
+        <a class="btn" href="{{ block.settings.link }}">{{ block.settings.url_title }}</a>
+    </div>
+    <div class="collection-list__overlay"></div>
+    <div class="collection-list__image" style="background-image: url('{{ block.settings.image | img_url: 'large' }}')"></div>
+</div>

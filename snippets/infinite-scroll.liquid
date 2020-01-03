@@ -1,0 +1,27 @@
+{% if count == blank %}
+  {% assign count = collection.products_count %}
+{% endif %}
+<div id="loadMoreWrapper" class="js-loadmore-wrapper">
+    <div class="container js-loadmore">
+        {% if paginate.items > 0 %}
+        <p class="progress-text">
+            {% assign current_prog = paginate.current_offset | plus: paginate.page_size %}
+            {% if current_prog > count %}
+            {% assign current_prog = count %}
+            {% endif %}
+            {% assign new_prog = current_prog | times: 100 %}
+            {% assign final_prog = new_prog | divided_by: paginate.items %}
+            Du har nu set {{ current_prog }} ud af {{ paginate.items }} produkter
+        </p>
+        <div class="progressbar">
+            <div class="bar" style="width:{{ final_prog }}%;"></div>
+        </div>
+        {% endif %}
+
+        {% if paginate.next %}
+        <div id="loadMoreButton" class="load-more text-center">
+            <a href="{{ paginate.next.url }}" id="more" class="btn js-load-button visually-hidden">Indlæs flere produkter</a>
+        </div>
+        {% endif %}
+    </div>
+</div>

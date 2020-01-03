@@ -1,0 +1,56 @@
+{% assign has_multiple_variants = false %}
+{% if product.variants.size > 1 %}
+    {% assign has_multiple_variants = true %}
+{% endif %}
+
+{% assign has_multiple_options = false %}
+{% if product.options.size > 1 %}
+    {% assign has_multiple_options = true %}
+{% endif %}
+
+{% if has_multiple_variants %}
+    {% include 'get-variants-with-quantity-json' with product: product  %}
+{% endif %}
+
+{% assign has_selected_variant = false %}
+{% if product.selected_variant != nil %}
+    {% assign has_selected_variant = true %}
+{% endif %}
+
+{% assign can_add_to_cart = product.selected_or_first_available_variant.available %}
+
+<form id="add-to-cart-form" action="/cart/add" method="post" enctype="multipart/form-data" data-variants="{{ variants_with_quantity_json | url_param_escape }}">
+    {% if has_multiple_options or has_multiple_variants %}
+        {% for option in product.options_with_values %}
+            {% assign option_name = 'option' | append: option.position %}
+
+            {% assign selected = false %}
+            {% if has_selected_variant %}
+                {% assign selected = product.selected_variant[option_name] %}
+            {% endif %}
+
+            {% if option.name == 'Color' %}
+                {% include 'product-option-row' with option: option, option_name: option_name, selected: selected %}
+            {% else %}
+                {% include 'product-option-row' with option: option, option_name: option_name, selected: selected, type: 'select' %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <input class="js-variant-id" type="hidden" name="id" value="{% if has_selected_variant %}{{ product.selected_variant.id }}{% else if has_multiple_variants != true %}{{ product.variants.first.id }}{% endif %}">
+    
+    <div class="visually-hidden">
+        <label for="Quantity">quantity</label>
+        <input type="number" id="Quantity" name="quantity" value="1" min="1">
+    </div>
+
+    <button type="submit" name="add" id="add-to-cart-button" {% unless can_add_to_cart %}disabled{% endunless %}>
+        {%- if can_add_to_cart != true -%}
+            {{ 'products.product.unavailable' | t }}
+        {%- else -%}
+            <span class="add-to-cart-text">{{ 'products.product.add_to_cart' | t }}</span>
+        {%- endif -%}
+            <span class="adding-to-cart-text">{{ 'cart.content.adding_to_cart' | t }}</span>
+            {% include 'added-success-button' %}
+    </button>
+</form>

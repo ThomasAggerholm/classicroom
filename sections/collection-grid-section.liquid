@@ -1,0 +1,287 @@
+<section id="collection-grid" class="section">
+    <div class="collection-grid__inner">
+        <div class="collection-grid__title talign-center">
+            <h1>{{ section.settings.title }}</h1>
+        </div>
+
+        <div class="collection-grid__grid">
+            <div class="grid-item grid-item1">
+                <a href="{{ section.settings.grid_button_url1 }}" class="grid-item__link"></a>
+                <div class="grid-item__content">
+                    <div class="grid-item__header">
+                        <h4>{{ section.settings.grid_collection1 }}</h4>
+                    </div>
+    
+                    <div class="grid-item__info talign-center">
+                        <h2>{{ section.settings.grid_title1 | truncate: 30, '...' }}</h2>
+                        <a href="{{ section.settings.grid_button_url1 }}" class="btn">{{ section.settings.grid_button_text1 }}</a>
+                    </div>
+                </div>
+                <div class="bg-overlay"></div>
+                <div class="bg" style="background-image: url('{{ section.settings.bg_image1 | img_url: 'master' }}')"></div>
+            </div>
+
+            <div class="grid-item grid-item2">
+                <a href="{{ section.settings.grid_button_url2 }}" class="grid-item__link"></a>
+                <div class="grid-item__content">
+                    <div class="grid-item__header">
+                        <h4>{{ section.settings.grid_collection2 }}</h4>
+                    </div>
+
+                    <div class="grid-item__info talign-center">
+                        <h2>{{ section.settings.grid_title2 | truncate: 30, '...' }}</h2>
+                        <a href="{{ section.settings.grid_button_url2 }}" class="btn">{{ section.settings.grid_button_text2 }}</a>
+                    </div>
+                </div>
+                <div class="bg-overlay"></div>
+                <div class="bg" style="background-image: url('{{ section.settings.bg_image2 | img_url: 'master' }}')"></div>
+            </div>
+
+            <div class="grid-item-two-rows grid-item">
+                <div class="grid-item grid-item3">
+                    <a href="{{ section.settings.grid_button_url3 }}" class="grid-item__link"></a>
+                    <div class="grid-item__content">
+                        <div class="grid-item__header">
+                            <h4>{{ section.settings.grid_collection3 }}</h4>
+                        </div>
+
+                        <div class="grid-item__info talign-center">
+                            <h2>{{ section.settings.grid_title3 | truncate: 30, '...' }}</h2>
+                            <a href="{{ section.settings.grid_button_url3 }}" class="btn">{{ section.settings.grid_button_text3 }}</a>
+                        </div>
+                    </div>
+                    <div class="bg-overlay"></div>
+                    <div class="bg" style="background-image: url('{{ section.settings.bg_image3 | img_url: 'master' }}')"></div>
+                </div>
+
+                <div class="grid-item grid-item4">
+                    <a href="{{ section.settings.grid_button_url4 }}" class="grid-item__link"></a>
+                    <div class="grid-item__content">
+                        <div class="grid-item__header">
+                            <h4>{{ section.settings.grid_collection4 }}</h4>
+                        </div>
+
+                        <div class="grid-item__info talign-center">
+                            <h2>{{ section.settings.grid_title4 | truncate: 30, '...' }}</h2>
+                            <a href="{{ section.settings.grid_button_url4 }}" class="btn">{{ section.settings.grid_button_text4 }}</a>
+                        </div>
+                    </div>
+                    <div class="bg-overlay"></div>
+                    <div class="bg" style="background-image: url('{{ section.settings.bg_image4 | img_url: 'master' }}')"></div>
+                </div>
+            </div>
+
+            <div class="grid-item-two-rows grid-item">
+                <div class="grid-item grid-item5">
+                    <a href="{{ section.settings.grid_button_url5 }}" class="grid-item__link"></a>
+                    <div class="grid-item__content">
+                        <div class="grid-item__header">
+                            <h4>{{ section.settings.grid_collection5 }}</h4>
+                        </div>
+    
+                        <div class="grid-item__info talign-center">
+                            <h2>{{ section.settings.grid_title5 | truncate: 30, '...' }}</h2>
+                            <a href="{{ section.settings.grid_button_url5 }}" class="btn">{{ section.settings.grid_button_text5 }}</a>
+                        </div>
+                    </div>
+                    <div class="bg-overlay"></div>
+                    <div class="bg" style="background-image: url('{{ section.settings.bg_image5 | img_url: 'master' }}')"></div>
+                </div>
+    
+                <div class="grid-item grid-item6">
+                    <a href="{{ section.settings.grid_button_url6 }}" class="grid-item__link"></a>
+                    <div class="grid-item__content">
+                        <div class="grid-item__header">
+                            <h4>{{ section.settings.grid_collection6 }}</h4>
+                        </div>
+    
+                        <div class="grid-item__info talign-center">
+                            <h2>{{ section.settings.grid_title6 | truncate: 30, '...' }}</h2>
+                            <a href="{{ section.settings.grid_button_url6 }}" class="btn">{{ section.settings.grid_button_text6 }}</a>
+                        </div>
+                    </div>
+                    <div class="bg-overlay"></div>
+                    <div class="bg" style="background-image: url('{{ section.settings.bg_image6 | img_url: 'master' }}')"></div>
+                </div> <!-- /grid-item6 -->
+
+            </div>
+        </div> <!-- /collection-grid -->
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name": "Collection Grid",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Collection Grid Title"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image1",
+            "label": "Grid Image 1"
+        },
+        {
+            "type": "text",
+            "id": "grid_collection1",
+            "label": "Grid Collection 1"
+        },
+        {
+            "type": "text",
+            "id": "grid_title1",
+            "label": "Grid Title 1"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_text1",
+            "label": "Grid Button Text 1"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_url1",
+            "label": "Grid Button Link 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image2",
+            "label": "Grid Image 2"
+        },
+        {
+            "type": "text",
+            "id": "grid_collection2",
+            "label": "Grid Collection 2"
+        },
+        {
+            "type": "text",
+            "id": "grid_title2",
+            "label": "Grid Title 2"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_text2",
+            "label": "Grid Button Text 2"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_url2",
+            "label": "Grid Button Link 2"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image3",
+            "label": "Grid Image 3"
+        },
+        {
+            "type": "text",
+            "id": "grid_collection3",
+            "label": "Grid Collection 3"
+        },
+        {
+            "type": "text",
+            "id": "grid_title3",
+            "label": "Grid Title 3"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_text3",
+            "label": "Grid Button Text 3"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_url3",
+            "label": "Grid Button Link 3"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image4",
+            "label": "Grid Image 4"
+        },
+        {
+            "type": "text",
+            "id": "grid_collection4",
+            "label": "Grid Collection 4"
+        },
+        {
+            "type": "text",
+            "id": "grid_title4",
+            "label": "Grid Title 4"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_text4",
+            "label": "Grid Button Text 4"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_url4",
+            "label": "Grid Button Link 4"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image5",
+            "label": "Grid Image 5"
+        },
+        {
+            "type": "text",
+            "id": "grid_collection5",
+            "label": "Grid Collection 5"
+        },
+        {
+            "type": "text",
+            "id": "grid_title5",
+            "label": "Grid Title 5"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_text5",
+            "label": "Grid Button Text 5"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_url5",
+            "label": "Grid Button Link 5"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_image6",
+            "label": "Grid Image 6"
+        },
+        {
+            "type": "text",
+            "id": "grid_collection6",
+            "label": "Grid Collection 6"
+        },
+        {
+            "type": "text",
+            "id": "grid_title6",
+            "label": "Grid Title 6"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_text6",
+            "label": "Grid Button Text 6"
+        },
+        {
+            "type": "text",
+            "id": "grid_button_url6",
+            "label": "Grid Button Link 6"
+        }
+    ],
+    "presets": [
+        {
+            "category": "collection_grid",
+            "name": "Collection Grid",
+            "settings": {
+                "title": "Et kig værd",
+                "grid_collection1": "Collection 1",
+                "grid_title1": "Title 1",
+                "grid_button_text1": "SE UDVALGET",
+                "grid_button_url1": "#"
+            }
+        }
+    ]
+}
+{% endschema %}

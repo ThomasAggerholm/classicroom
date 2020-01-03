@@ -1,0 +1,41 @@
+{%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+<ul>
+    <li id="sortBy" class="dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{ 'collections.sorting.title' | t }}
+        <span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="19.828" height="36.828" viewBox="0 0 19.828 36.828">
+                <g id="Group_1" data-name="Group 1" transform="translate(-488.086 -429.086)">
+                <line id="Line_1" data-name="Line 1" x2="17" y2="17" transform="translate(489.5 430.5)" fill="none" stroke="#000" stroke-linecap="square" stroke-width="3"/>
+                <line id="Line_2" data-name="Line 2" x2="17" y2="17" transform="translate(506.5 447.5) rotate(90)" fill="none" stroke="#000" stroke-linecap="square" stroke-width="3"/>
+                </g>
+            </svg>
+        </span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <ul>
+        <li value="best-selling"{% if sort_by == "best-selling" %} class="active"{% endif %}>
+            <a href="#">{{ 'collections.sorting.best_selling' | t }}</a>
+        </li>
+        {% comment %}<li value="title-ascending"{% if sort_by == "title-ascending"  %}class="active"{% endif %}>
+            <a href="#">{{ 'collections.sorting.az' | t }}</a>
+        </li>{% endcomment %}
+        {% comment %}<li value="title-descending"{% if sort_by == "title-descending" %} class="active"{% endif %}>
+            <a href="#">{{ 'collections.sorting.za' | t }}</a>
+        </li>{% endcomment %}
+        <li value="price-ascending"{% if sort_by == "price-ascending" %} class="active"{% endif %}>
+            <a href="#">{{ 'collections.sorting.price_ascending' | t }}</a>
+        </li>
+        <li value="price-descending"{% if sort_by == "price-descending" %} class="active"{% endif %}>
+            <a href="#">{{ 'collections.sorting.price_descending' | t }}</a>
+        </li>
+        <li value="created-descending"{% if sort_by == "created-descending" %} class="active"{% endif %}>
+            <a href="#">{{ 'collections.sorting.date_descending' | t }}</a>
+        </li>
+        {% comment %}<li value="created-ascending"{% if sort_by == "created-ascending" %} class="active"{% endif %}>
+            <a href="#">{{ 'collections.sorting.date_ascending' | t }}</a>
+        </li>{% endcomment %}
+        </ul>
+    </div>
+    </li>
+</ul>

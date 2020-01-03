@@ -1,0 +1,33 @@
+<div id="thanks" class="section">
+    <div class="thanks__info">
+        <div class="thanks_title"><h1 class="title">{{ section.settings.title }}</h1></div>
+        <p class="thanks__text">{{ section.settings.text }}</p>
+        <div class="thanks__info__bg">
+            <img src="{{ 'logo.gif' | asset_img_url: 'master' }}" alt="{{ image.alt }}">
+        </div>
+    </div>
+    <div class="thanks__image" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')"></div>
+</div>
+
+{% schema %}
+{
+    "name": "Tak for tilmelding",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Overskrift"
+        },
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Beskrivelse"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Vælg billede"
+        }
+    ]
+}
+{% endschema %}

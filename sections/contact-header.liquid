@@ -1,0 +1,95 @@
+<div class="contact-header">
+    <div class="contact-header__info">
+        <div class="contact-header__info__inner">
+            <div class="contact__info__img">
+                <img src="{{ 'circle-text.svg' | asset_url }}" alt="Rotating image">
+            </div>
+
+            <h1 class="contact__title">{{ section.settings.title }}</h1>
+            <p class="contact__text">
+                {{ section.settings.description }}
+            </p>
+            <div>
+                <a href="tel:{{ section.settings.phone_url }}" class="btn contact__phone">{{ section.settings.phone_text }}</a>
+            </div>
+            <div>
+                <a href="mailto:{{ section.settings.email_url }}" class="btn contact__email">{{ section.settings.email_text }}</a>
+            </div>
+            <p class="contact__open-hrs">{{ section.settings.open_week }}</p>
+            <p class="contact__open-hrs">{{ section.settings.open_weekend }}</p>
+            {% if section.settings.show_sunday %}
+                <p class="contact__open-hrs">{{ section.settings.open_sunday }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="contact-header__image" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')"></div>
+</div>
+
+{% schema %}
+{
+    "name": "Contact Info",
+    "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Overskrift"  
+        },
+        {
+            "type": "textarea",
+            "id": "description",
+            "label": "Beskrivende tekst"
+        },
+        {
+            "type": "text",
+            "id": "phone_text",
+            "label": "Tlf nr tekst",
+            "info": "Indsæt tlf nr med mellemrum"
+        },
+        {
+            "type": "text",
+            "id": "phone_url",
+            "label": "Tlf nr link",
+            "info": "Indsæt tlf nr uden mellemrum og husk +45"
+        },
+        {
+            "type": "text",
+            "id": "email_text",
+            "label": "Email",
+            "info": "Indsæt email"
+        },
+        {
+            "type": "text",
+            "id": "email_url",
+            "label": "Email URL",
+            "info": "Indsæt email igen"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_sunday",
+            "label": "Vis søndag åbningstider?",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "open_week",
+            "label": "Hverdags åbningstider"
+        },
+        {
+            "type": "text",
+            "id": "open_weekend",
+            "label": "Weekend åbningstider"
+        },
+        {
+            "type": "text",
+            "id": "open_sunday",
+            "label": "Søndag åbningstider"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Upload image"
+        }
+    ]
+}
+{% endschema %}

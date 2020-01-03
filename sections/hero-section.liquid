@@ -1,0 +1,172 @@
+<section id="hero" class="section">
+        <div class="hero__content flex-center">
+            <div class="hero__content__title talign-center">
+                <div class="hero__content__img">
+                    <img src="{{ 'circle-text.svg' | asset_url }}" alt="Rotating image">
+                </div>
+                <h1>{{ section.settings.hero_title }}</h1>
+            </div>
+            <a class="btn hero-btn-anim" href="{{ section.settings.button_url }}">{{ section.settings.button_text }}</a>
+        </div>
+
+        <div class="hero__slider-wrapper">
+            <div class="hero__slider">
+                {% for block in section.blocks %}
+                <div class="hero-slide" {{ block.shopify_attributes }}>
+                    <a href="{{ block.settings.slider_button_url }}" class="hero-slide__link"></a>
+                    <div class="hero-slide__content">
+                        <div class="hero-slide__content-header">
+                            <h4>{{ block.settings.slider_collection }}</h4>
+                        </div>
+
+                        <div class="hero-slide__content-info talign-center">
+                            <h2>{{ block.settings.slider_title }}</h2>
+                            <a class="btn" href="{{ block.settings.slider_button_url }}">{{ block.settings.slider_button_text }}</a>
+                        </div>
+                    </div>
+                    <div class="bg-overlay"></div>
+                    {% if block.settings.vimeo_id != blank %}
+                    <div class="video-bg">
+                        <div class="video-fg">
+                            <iframe src="https://player.vimeo.com/video/{{ block.settings.vimeo_id.id }}?autoplay=1&loop=1&background=1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="bg" style="background-image: url('{{ block.settings.slider_bg | img_url: 'master' }}')"></div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="hero__slider__controls-wrapper">
+                <div class="hero__slider__current-slide">01</div>
+                <div class="hero__slider__pagination"></div>
+                {% if section.blocks.size < 10 %}
+                {% assign totalnum = "0" | append: section.blocks.size %}
+                {% else %}
+                    {% assign totalnum = section.blocks.size %}
+                {% endif %}
+                <div class="hero__slider__total-slides">{{ totalnum }}</div>
+
+                <div class="hero__slider__controls">
+                    <div class="prev">
+                        <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                            <title>Rectangle</title>
+                            <desc>Created with Sketch.</desc>
+                            <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#1D2129" stroke-width="1.5">
+                                    <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                                        <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                            <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="next">
+                        <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                            <title>Rectangle</title>
+                            <desc>Created with Sketch.</desc>
+                            <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#1D2129" stroke-width="1.5">
+                                    <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                                        <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                            <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</section>
+
+{% schema %}
+{
+    "name": "Hero Section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "hero_title",
+            "label": "Hero Titel"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button Text"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button Link"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "slider",
+            "name": "Hero Slider",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "slider_bg",
+                    "label": "Slider Image"
+                },
+                {
+                    "type": "video_url",
+                    "id": "vimeo_id",
+                    "accept": ["vimeo"],
+                    "label": "Vimeo video link",
+                    "info": "If a link is present the video will be used instead of the image above."
+                },
+                {
+                    "type": "text",
+                    "id": "slider_collection",
+                    "label": "Slider Collection"
+                },
+                {
+                    "type": "text",
+                    "id": "slider_title",
+                    "label": "Slider Title"
+                },
+                {
+                    "type": "text",
+                    "id": "slider_button_text",
+                    "label": "Slider Button Text"
+                },
+                {
+                    "type": "text",
+                    "id": "slider_button_url",
+                    "label": "Slider Button Link"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "category": "hero_section",
+            "name": "Hero Section",
+            "settings": {
+                "hero_title": "Vores domæne er godt design og god service",
+                "button_text": "Besøg vores shop",
+                "button_url": "/products"
+            },
+            "blocks": [
+                {
+                    "type": "slider",
+                    "settings": {
+                        "slider_collection": "Collection",
+                        "slider_title": "Title",
+                        "slider_button_text": "SE UDVALGET",
+                        "slider_button_url": "#"
+                    }
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

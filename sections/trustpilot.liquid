@@ -1,0 +1,90 @@
+<section id="trustpilot" class="section">
+    <div class="trustpilot__inner">
+        <div class="trustpilot__title">
+            <h1>{{ section.settings.title }}</h1>
+        </div>
+
+        <div class="trustpilot-slider__wrapper">
+            <div class="trustpilot__controls">
+                <div class="prev">
+                    <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                        <title>Rectangle</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#1D2129" stroke-width="1.5">
+                                <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                                    <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                        <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="next">
+                    <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                        <title>Rectangle</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#1D2129" stroke-width="1.5">
+                                <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                                    <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                        <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="trustpilot-slider">
+                {% for block in section.blocks %}
+                    <div class="trustpilot-slide" {{ block.shopify_attributes }}>
+                        <img src="{{ 'Trustpilot.png' | asset_img_url: '600x' }}" alt="Trustpilot">
+                        <h4>{{ block.settings.trust_title }}</h4>
+                        <p>{{ block.settings.quote }}</p>
+                        <p>{{ block.settings.name }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Trustpilot",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "trustpilot_slider",
+            "name": "Trustpilot Slider",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "trust_title",
+                    "label": "Trustpilot Title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "quote",
+                    "label": "Quote"
+                },
+                {
+                    "type": "text",
+                    "id": "name",
+                    "label": "Name, City"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

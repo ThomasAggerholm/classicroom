@@ -1,0 +1,93 @@
+#page404 {
+    padding: 100px 0 100px 70px;
+    @media (max-width: 900px) {
+        padding: 0 0 70px 0;
+    }
+
+    .page404__inner {
+        display: flex;
+        justify-content: space-between;
+        @media (max-width: 900px) {
+            flex-direction: column;
+        }
+
+        .page404__text-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 450px;
+            width: 50%;
+            @media (max-width: 900px) {
+                width: 100%;
+                padding-left: 20px;
+                padding-right: 20px;
+                min-height: 300px;
+            }
+
+            .page404__text {
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+                flex-direction: column;
+                z-index: 2;
+                @media (max-width: 900px) {
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .page404__title {
+                    margin-bottom: 10px;
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                .page404__description {
+                    margin-bottom: 50px;
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+
+                .page404-btn {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+            }
+
+            .page404__text-bg-wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .page404__text-bg {
+                    font-size: 16rem;
+                    z-index: -1;
+                    opacity: 0;
+                    transform: translateY(20px);
+                    color: $color-medium-grey;
+                    @media (max-width: 900px) {
+                        font-size: 11rem;
+                    }
+                }
+            }
+        }
+
+        .page404__image {
+            min-height: 450px;
+            width: 50%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transform: translateY(20px);
+            @media (max-width: 900px) {
+                width: 100%;
+            }
+        }
+    }
+}

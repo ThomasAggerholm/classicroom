@@ -1,0 +1,48 @@
+<section id="page404" class="section">
+    <div class="page404__inner">
+        <div class="page404__text-wrapper">
+            <div class="page404__text">
+                <h1 class="page404__title">{{ section.settings.title }}</h1>
+                <p class="page404__description">{{ section.settings.text }}</p>
+                <div class="page404-btn"><a href="{{ section.settings.button_url }}" class="btn">{{ section.settings.button_text }}</a></div>
+            </div>
+            <div class="page404__text-bg-wrapper">
+                <span class="page404__text-bg">404</span>
+            </div>
+        </div>
+        <div class="page404__image" style="background-image: url('{{ section.settings.image | img_url: 'master' }}')"></div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Page 404",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "404 Titel"
+        },
+        {
+            "type": "text",
+            "id": "text",
+            "label": "404 tekst"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Tekst til knap"
+        },
+        {
+            "type": "text",
+            "id": "button_url",
+            "label": "Link til knap"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Vælg billede"
+        }
+    ]
+}
+{% endschema %}

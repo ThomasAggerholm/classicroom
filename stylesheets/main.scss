@@ -1,0 +1,98 @@
+//Colors
+@import 'global/colors';
+
+//Web Fonts
+@import 'global/web-fonts';
+
+//Type
+@import 'global/type';
+
+//Global
+@import 'global/_global';
+
+//Base
+@import 'global/base';
+
+//Utility
+@import 'global/utility';
+
+//Linklist
+@import 'snippets/link-list';
+@import 'sections/link-list-section';
+
+//Header
+@import 'sections/header';
+
+//Mobile Menu
+@import 'snippets/_mobile-menu.scss';
+
+//Mobile Linklist
+@import 'snippets/mobile-link-list';
+
+//Breadcrumbs
+@import 'snippets/breadcrumbs';
+
+//Hero
+@import 'sections/hero';
+
+//Bestseller
+@import 'sections/bestseller';
+
+//Collection Grid Section
+@import 'sections/collection-grid-section';
+
+//Product Slider
+@import 'sections/product-slider';
+
+//Product Card
+@import 'snippets/product-card';
+
+//Newsletter
+@import 'sections/newsletter';
+
+//Trustpilot
+@import 'sections/trustpilot';
+
+//Product Page
+@import 'sections/product-bulletpoints';
+@import 'snippets/product-description';
+@import 'snippets/add-to-cart-form';
+@import 'snippets/product-option-row';
+@import 'sections/product-recommendations';
+
+//Footer
+@import 'sections/footer';
+
+//Product Container
+@import 'snippets/product-container';
+
+//Cart
+@import 'templates/cart';
+@import 'snippets/mini-cart';
+@import 'sections/cart-sales-slider';
+
+//Collection
+@import 'templates/collection';
+
+//List-Collection
+@import 'templates/list-collections';
+@import 'snippets/collection-list__card';
+
+//Page
+@import 'templates/page';
+
+//Page Brands
+@import 'templates/page-brands';
+@import 'snippets/brands-card';
+
+//Contact Page
+@import 'templates/contact';
+@import 'sections/contact-header';
+@import 'sections/contact-form';
+@import 'sections/faq';
+
+//404
+@import 'sections/section-404';
+
+//Thank you page
+@import 'sections/thanks';

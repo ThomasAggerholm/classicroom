@@ -1,0 +1,54 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image %}
+
+<div id="product" class="section">
+  <div class="product-container">
+      <div class="product-image">
+        <div class="product-image__featured">
+            {% for image in product.images %}
+              <span class="featured-image__wrapper" data-image-variant-id="{{ image.id }}">
+                  <img class="featured-image" src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-image="{{ image.src | img_url: 'large', scale: 2 }}">
+              </span>
+            {% endfor %}
+        </div>
+    
+        {% if product.images.size > 1 %}
+        <div class="product-image__thumbnails">
+          <div class="thumbnail-slider">
+            {% for image in product.images %}
+              <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+      </div> <!-- /product-image -->
+    
+      <div class="product-info">
+        <p class="product-info__vendor">{{ product.vendor }}</p>
+        <h1 class="product-info__title">{{ product.title }}</h1>
+        <h2 class="product-info__price"><span class="js-price" data-default-price="{{ product.price | money }}">{{ current_variant.price | money_without_trailing_zeros }}</span> {% if current_variant.compare_at_price > current_variant.price %}<span class="product-info__compare_at_price">{{ current_variant.compare_at_price | money_without_trailing_zeros }}</span>{% endif %}</h2>
+        {% include 'add-to-cart-form' %}
+      </div>
+  </div>
+
+  <div class="product-description section">
+    {% include 'product-description' %}
+  </div>
+
+  <div class="product-bulletpoints">
+    {% section 'product-bulletpoints' %}
+  </div>
+
+
+  {% section 'product-recommendations' %}
+</div>
+
+<div class="max-quantity-popup">
+  <div class="max-quantity-popup__inner">
+    <div class="max-quantity-popup__title">
+      <h2 class="h1">Ups!</h2>
+      <p class="max-quantity-popup__text">Der er ikke flere af dette produkt på lager.</p>
+      <button class="max-quantity-popup__button">Forstået</button>
+    </div>
+  </div>
+</div>

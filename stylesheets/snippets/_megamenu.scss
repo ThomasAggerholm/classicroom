@@ -1,0 +1,56 @@
+#megamenu {
+    position: fixed;
+    top: 190px;
+    left: 0;
+    width: 100%;
+    min-height: 100px;
+    background: $color-white;
+    z-index: 9999;
+    box-shadow: 0 20px 20px 0 rgba(0,0,0,0.1);
+    border-top: 1px solid $color-offwhite;
+    display: none;
+
+    .megamenu__container {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 70px;
+    }
+
+    .megamenu__column {
+        display: flex;
+        flex-direction: column;
+        
+        &:not(:last-of-type) {
+            margin-right: 150px;
+        }
+        a {
+            font-size: $font-size-sm;
+            line-height: $line-height-sm;
+            color: $color-dark;
+            margin-bottom: 20px;
+
+            &:hover {
+                color: $color-brown-grey;
+            }
+        }
+
+        .megamenu__column-title {
+            font-weight: 400;
+            margin-bottom: 20px;
+
+            a {
+                font-size: 24px;
+                line-height: 24px;
+                color: $color-dark;
+            }
+        }
+    }
+
+    &.scroll {
+        top: 70px;
+    }
+
+    &.open {
+        display: block;
+    }
+}

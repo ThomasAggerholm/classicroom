@@ -1,0 +1,117 @@
+<div class="contact-form__wrapper">
+
+    <div class="contact-form__title">
+        <h2 class="h1">{{ section.settings.title }}</h2>
+    </div>
+
+    {% form 'contact' %}
+        {% if form.posted_successfully? %} {{ section.settings.thanks }} {% endif %}
+        {{ form.errors | default_errors }}
+        <div class="contact-form__inner">
+            <div class="contact-form__names">
+                <div class="first-name">
+                    <label for="ContactFormName">{{ section.settings.first_name_label }}</label>
+                    <input type="text" id="ContactFormName" name="contact[firstName]" placeholder="{{ section.settings.first_name_placeholder }}" onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ section.settings.first_name_placeholder }}'">
+                </div>
+                <div class="last-name">
+                    <label for="ContactFormName">{{ section.settings.last_name_label }}</label>
+                    <input type="text" id="ContactFormName" name="contact[lastName]" placeholder="{{ section.settings.last_name_placeholder }}" onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ section.settings.last_name_placeholder }}'">
+                </div>
+            </div>
+            
+            <div class="contact-form__info">
+                <div class="contact-phone">
+                    <label for="ContactFormPhone">{{ section.settings.phone_label }}</label>
+                    <input type="tel" id="ContactFormPhone" name="contact[phone]" placeholder="{{ section.settings.phone_placeholder }}" onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ section.settings.phone_placeholder }}'">
+                </div>
+                <div class="contact-order">
+                    <label for="ContactFormPhone">{{ section.settings.order_label }}</label>
+                    <input type="number" id="ContactFormPhone" name="contact[orderNum]" placeholder="{{ section.settings.order_placeholder }}" onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ section.settings.order_placeholder }}'">
+                </div>
+            </div>
+            
+            <div class="contact-form__message">
+                <label for="ContactFormMessage">{{ section.settings.message_label }}</label>
+                <textarea rows="10" id="ContactFormMessage" name="contact[body]" placeholder="{{ section.settings.message_placeholder }}" onfocus="this.placeholder = ''" onblur="this.placeholder = '{{ section.settings.message_placeholder }}'"></textarea>
+            </div>
+        </div>
+        
+        <div class="contact-form__button">
+            <input class="contact__button" type="submit" value="{{ section.settings.button_text }}">
+        </div>
+        
+    {% endform %}
+</div>
+
+{% schema %}
+{
+    "name": "Contact Form",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Kontaktform Titel"
+        },
+        {
+            "type": "text",
+            "id": "first_name_label",
+            "label": "Fornavn label"
+        },
+        {
+            "type": "text",
+            "id": "first_name_placeholder",
+            "label": "Fornavn placeholder"
+        },
+        {
+            "type": "text",
+            "id": "last_name_label",
+            "label": "Efternavn label"
+        },
+        {
+            "type": "text",
+            "id": "last_name_placeholder",
+            "label": "Efternavn placeholder"
+        },
+        {
+            "type": "text",
+            "id": "phone_label",
+            "label": "Telefon nr. label"
+        },
+        {
+            "type": "text",
+            "id": "phone_placeholder",
+            "label": "Telefon nr. placeholder"
+        },
+        {
+            "type": "text",
+            "id": "order_label",
+            "label": "Ordre nr. label"
+        },
+        {
+            "type": "text",
+            "id": "order_placeholder",
+            "label": "Ordre nr. placeholder"
+        },
+        {
+            "type": "text",
+            "id": "message_label",
+            "label": "Besked label"
+        },
+        {
+            "type": "text",
+            "id": "message_placeholder",
+            "label": "Besked placeholder"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Tekst på send-knap"
+        },
+        {
+            "type": "text",
+            "id": "thanks",
+            "label": "Tak for din mail-besked"
+        }
+    ]
+}
+{% endschema %}

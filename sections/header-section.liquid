@@ -1,0 +1,294 @@
+{% if section.settings.show_topbar %}
+<section class="top-bar" style="background-color: {{ section.settings.topbar_bg_color }}; color: {{ section.settings.topbar_text_color }};">
+    <div class="top-bar__inner container">
+        <div class="top-bar__left">{{ section.settings.topbar_announcement }}</div>
+        <div class="top-bar__middle">
+            <div class="controls">
+                <div class="top-bar-slider-prev">
+                    <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                        <title>Rectangle</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#ffffff" stroke-width="1.5">
+                                <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                                    <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                        <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="top-bar-slider-next">
+                    <svg width="9px" height="14px" viewBox="0 0 9 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+                        <title>Rectangle</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Web-design-Mobile-375px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <g id="Mobil---Produkt" transform="translate(-347.000000, -5057.000000)" stroke="#ffffff" stroke-width="1.5">
+                                <g id="TRUSTPILOT-Copy" transform="translate(-287.000000, 4762.000000)">
+                                    <g id="Navigation" transform="translate(610.000000, 295.000000)">
+                                        <polyline id="Rectangle" transform="translate(25.043638, 6.631313) rotate(-45.000000) translate(-25.043638, -6.631313) " points="28.983032 2.03535354 29.6395976 11.2272727 20.4476784 10.5707071"></polyline>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="topbar-slider">
+                {% for block in section.blocks %}
+                    <div class="topbar-usp">{{ block.settings.usp }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="top-bar__right">
+            <img src="{{ section.settings.topbar_phone_icon }}" alt="Tlf nr">
+            <a style="color: {{ section.settings.topbar_text_color }};" href="tel:+45{{ section.settings.topbar_phone_link }}">{{ section.settings.topbar_phone }}</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<header id="header" class="{% if section.settings.show_topbar %} topbar-enabled{% endif %}">
+    <div class="container">
+        <div class="header__grid">
+            <div class="header__logo-wrapper">
+                {% if section.settings.logo %}
+                {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                    <a href="{{ routes.root_url }}" class="header__logo">
+                        {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+                        <img 
+                        src="{{ section.settings.logo | img_url: '300x300' }}"
+                        data-src="{{ img_url }}"
+                        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                        data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+                        data-sizes="auto"
+                        alt="{{ logo_alt | escape }}"
+                        style="max-width: {{ section.settings.logo_max_width }}px">
+                        <noscript>
+                        {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+                        <img src="{{ section.settings.logo | img_url: image_size }}"
+                        srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                        alt="{{ section.settings.logo.alt | default: shop.name }}"
+                        style="max-width: {{ section.settings.logo_max_width }}px;">
+                        </noscript>
+                    </a>
+                {% else %}
+                    <a class="header__logo-alt" href="{{ routes.root_url }}">{{ shop.name }}</a>
+                {% endif %}
+            </div>
+
+            <div class="header__search-wrapper flex-center">
+                <form class="search-form flex-space-between" action="/search" method="get" role="search">
+                    <input class="search-field" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Søg blandt vores produkter" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Søg blandt vores produkter'">
+                    <button class="search-button" type="submit"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></button>
+                </form>
+            </div>
+
+            <div class="header__cart-wrapper align-right valign-center">
+                <span class="header__cart-count {% if cart.item_count == 0 %}cart-count-hidden{% endif %}">{{ cart.item_count }}</span>
+                <p class="header__cart-text">Indkøbskurv</p>
+                <a class="header__cart-icon" href="/cart"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"></a>
+            </div>
+
+            <div class="header__collection-nav">
+                    <ul class="linklist">
+                        {% for link in linklists.main-menu.links %}
+                            <li class="linklist__item{% if link.levels > 0 %} has-child-list{% endif %}">
+                                <a class="linklist__item-link{% if link.active %} active-link{% endif %}" href="{{ link.url }}">{{ link.title }}</a>
+                                {% if link.links != blank %}
+                                    <div class="child-linklist__wrapper">
+                                        <ul class="child-linklist">
+                                            {% for child_link in link.links %}
+                                                <li class="child-linklist__item{% if link.levels > 1 %} has-child-list{% endif %}">
+                                                    <a class="child-linklist__item-link" href="{{ child_link.url }}">
+                                                        {{ child_link.title }}</a>
+                                                    {% if link.links != blank %}
+                                                        <div class="grandchild-linklist__wrapper">
+                                                            <ul class="grandchild-linklist">
+                                                                {% for grandchild_link in child_link.links %}
+                                                                    <li class="grandchild-linklist__item">
+                                                                        <a href="{{ grandchild_link.url }}">{{ grandchild_link.title }}</a>
+                                                                    </li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </div>
+                                                    {% endif %}
+                                                </li>
+                                                {% if forloop.index == 3 and link.title == 'BRANDS' %}
+                                                    <div class="linklist-image-container">
+                                                        <div class="overlay"></div>
+                                                        <img class="linklist-image" src="{{ section.settings.image | img_url: 'large' }}">
+                                                        <h2 class="linklist-image-title">{{ section.settings.title }}</h2>
+                                                        <a class="btn linklist-image-text" href="{{ section.settings.link }}">{{ section.settings.text }}</a>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+
+            <div class="header__about-nav align-right valign-center">
+                {% include 'link-list', handle: 'about-nav' %}
+            </div>
+        </div> <!-- /header__grid -->
+    </div>
+
+    <div class="mobile-header">
+        <div class="mobile-header__top">
+            <div class="mobile-header__menu-icon">
+                <svg id="burger-icon" xmlns="http://www.w3.org/2000/svg" width="19" height="11" viewBox="0 0 19 11">
+                    <g id="Group_1" data-name="Group 1" transform="translate(-37 -58)">
+                        <line id="line_1" data-name="Line 1" x2="18" transform="translate(37.5 58.5)" fill="none" stroke="#acacac" stroke-linecap="round" stroke-width="1"/>
+                        <line id="line_2" data-name="Line 2" x2="18" transform="translate(37.5 68.5)" fill="none" stroke="#acacac" stroke-linecap="round" stroke-width="1"/>
+                    </g>
+                </svg>
+            </div>
+    
+            <div class="header__logo-wrapper">
+                {% if section.settings.logo %}
+                {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+                    <a href="{{ routes.root_url }}" class="header__logo">
+                        {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+                        <img 
+                        src="{{ section.settings.logo | img_url: '300x300' }}"
+                        data-src="{{ img_url }}"
+                        data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                        data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+                        data-sizes="auto"
+                        alt="{{ logo_alt | escape }}"
+                        style="max-width: {{ section.settings.logo_max_width }}px">
+                        <noscript>
+                        {% capture image_size %}{{ section.settings.logo_max_width | escape }}x{% endcapture %}
+                        <img src="{{ section.settings.logo | img_url: image_size }}"
+                        srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                        alt="{{ section.settings.logo.alt | default: shop.name }}"
+                        style="max-width: {{ section.settings.logo_max_width }}px;">
+                        </noscript>
+                    </a>
+                {% else %}
+                    <a class="header__logo-alt" href="{{ routes.root_url }}">{{ shop.name }}</a>
+                {% endif %}
+            </div>
+    
+            <div class="header__cart-wrapper align-right valign-center">
+                <span class="header__cart-count {% if cart.item_count == 0 %}cart-count-hidden{% endif %}">{{ cart.item_count }}</span>
+                <a class="mobile-header__cart-icon" href="/cart"><img src="{{ 'cart.svg' | asset_url }}" alt="Cart"></a>
+            </div>
+        </div>
+
+        <div class="mobile-header__bottom">
+            <div class="header__search-wrapper flex-center">
+                <form class="search-form flex-space-between" action="/search" method="get" role="search">
+                    <input class="search-field" type="search" name="q" value="{{ search.terms | escape }}" placeholder="Søg">
+                    <button class="search-button" type="submit"><img src="{{ 'search.svg' | asset_url }}" alt="Search"></button>
+                </form>
+            </div>
+
+            <div class="mobile-header__menu-wrapper">
+                {% include 'mobile-link-list' %}
+            </div>
+        </div>
+        
+    </div> <!-- /mobile-header -->
+</header>
+
+{% schema %}
+{
+    "name": "Header",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_topbar",
+            "label": "Enable topbar?",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "topbar_bg_color",
+            "label": "Topbar background color"
+        },
+        {
+            "type": "color",
+            "id": "topbar_text_color",
+            "label": "Topbar text color"
+        },
+        {
+            "type": "text",
+            "id": "topbar_announcement",
+            "label": "Topbar announcement text"
+        },
+        {
+            "type": "text",
+            "id": "topbar_phone",
+            "label": "Topbar phone number"
+        },
+        {
+            "type": "text",
+            "id": "topbar_phone_link",
+            "label": "Topbar phone number link",
+            "info": "Skriv tlf nr uden +45"
+        },
+        {
+            "type": "text",
+            "id": "topbar_phone_icon",
+            "label": "Telefon ikon",
+            "info": "Upload svg fil i settings, kopier url'en og indsæt her"
+        },
+        {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo"
+        },
+        {
+            "type": "range",
+            "id": "logo_max_width",
+            "label": "Logo størrelse",
+            "min": 80,
+            "max": 150,
+            "step": 5,
+            "unit": "px",
+            "default": 95
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+        },
+        {
+            "type": "text",
+            "id": "link",
+            "label": "Link"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "topbar_usp",
+            "name": "Topbar USP",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "usp",
+                    "label": "Unique Selling Point"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

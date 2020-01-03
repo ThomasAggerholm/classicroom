@@ -1,0 +1,50 @@
+<div class="collection__filtering__colors">
+    <p class="collection__filtering-title">
+        {{ section.settings.title }}
+        <span class="active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="19.828" height="36.828" viewBox="0 0 19.828 36.828">
+            <g id="Group_1" data-name="Group 1" transform="translate(-488.086 -429.086)">
+            <line id="Line_1" data-name="Line 1" x2="17" y2="17" transform="translate(489.5 430.5)" fill="none" stroke="#000" stroke-linecap="square" stroke-width="3"/>
+            <line id="Line_2" data-name="Line 2" x2="17" y2="17" transform="translate(506.5 447.5) rotate(90)" fill="none" stroke="#000" stroke-linecap="square" stroke-width="3"/>
+            </g>
+        </svg>
+        </span>
+    </p>
+
+    <div class="collection__filtering__toggle-container">
+        <ul>
+        {% assign colors = '' %}
+        {% assign colorName = '' %}
+        {% for tag in collection.all_tags %}
+            {% if tag contains 'color_' %}
+            {% assign t = tag | remove: 'color_' | split: '%' %}
+            {% assign colors = t.last %}
+            {% assign colorName = t.first %}
+            
+            <li class="color-swatch-item{% if current_tags contains tag %} active{% endif %}">
+                <div class="collection-color-swatch" style="background-color: {{ colors }}"></div>
+                {% if current_tags contains tag %}
+                    {{ '' | link_to_remove_tag: tag }}
+                {% else %}
+                    {{ '' | link_to_add_tag: tag }}
+                {% endif %}
+                <div class="color-swatch-name">{{ colorName }}</div>
+            </li>
+            {% endif %}
+        {% endfor %}
+        </ul> 
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Color Filter",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Color filter title"
+        }
+    ]    
+}
+{% endschema %}

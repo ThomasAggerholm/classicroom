@@ -1,0 +1,106 @@
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.valign-center {
+    align-items: center;
+}
+
+.align-right {
+    justify-content: flex-end;
+}
+
+.talign-center {
+    text-align: center;
+}
+
+.visually-hidden {
+    position: absolute; 
+    overflow: hidden; 
+    clip: rect(0 0 0 0); 
+    height: 1px; width: 1px; 
+    margin: -1px; padding: 0; border: 0; 
+}
+
+//Mixins
+@mixin reset-input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smootinh: inherit;
+    -text-align: left;
+}
+
+//Newsletter
+.newsletter {
+    width: 400px;
+    height: 50px;
+    box-shadow: 0 11px 20px 0 rgba(0,0,0,0.11);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    border-radius: 4px;
+    background: $color-white;
+
+    .newsletter__input,
+    .newsletter__btn {
+        @include reset-input;
+    }
+
+    .newsletter__input {
+        width: 100%;
+        height: 100%;
+        color: $color-brown-grey !important;
+        font-size: $font-size-xs !important;
+        line-height: $line-height-xs !important;
+        cursor: initial !important;
+        padding: 20px 0;
+        &:focus {
+            outline: none;
+        }
+        &::placeholder {
+            color: $color-brown-grey !important;
+            font-size: $font-size-xs !important;
+            line-height: $line-height-xs !important;
+            letter-spacing: -1px !important;
+            font-family: 'LexendZetta', Arial, Helvetica, sans-serif !important;
+        }
+    }
+
+    .newsletter__btn {
+        color: $color-medium-grey;
+        font-size: $font-size-sm;
+        line-height: $line-height-sm;
+        font-family: 'LexendZetta', Arial, Helvetica, sans-serif !important;
+        &:hover {
+            cursor: pointer !important;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+
+    @media (max-width: 500px) {
+        width: 100%;
+    }
+}
+
+.no-scroll {
+    overflow: hidden;
+}

@@ -1,0 +1,189 @@
+<section id="footer" class="section">
+    <div class="footer__inner">
+        {% for block in section.blocks %}
+            <div class="footer__inner__info" {{ block.shopify_attributes }}>
+                {% case block.type %}
+                {% when 'info' %}
+                    <h3>{{ block.settings.info_title }}</h3>
+                    <a href="mailto:{{ block.settings.info_mail_link }}">{{ block.settings.info_mail }}</a>
+                    <a href="tel:+45{{ block.settings.info_phone_link }}">{{ block.settings.info_phone }}</a>
+                    <div class="footer__info__social">
+                        {% if block.settings.fb_checkbox %}
+                            <a class="footer__info__social__icon" href="{{ block.settings.fb_link }}"><img src="{{ 'facebook.svg' | asset_url }}" alt="fb logo"></a>
+                        {% endif %}
+                        {% if block.settings.in_checkbox %}
+                            <a class="footer__info__social__icon" href="{{ block.settings.in_link }}"><img src="{{ 'instagram.svg' | asset_url }}" alt="in logo"></a>
+                        {% endif %}
+                    </div>
+                    <p class="customer-service-title">{{ block.settings.customer_service }}</p>
+                    <p>{{ block.settings.open }}</p>
+                    <p>{{ block.settings.open_weekend }}</p>
+
+                {% when 'newsletter' %}
+                    <h3>{{ block.settings.newsletter_title }}</h3>
+
+                    {% include 'newsletter-footer-snippet' %}
+
+                {% when 'shop' %}
+                    <h3>{{ block.settings.title }}</h3>
+                        <ul>
+                            {% for link in linklists[block.settings.shop_link_list].links %}
+                                <li>{{ link.title | link_to: link.url }}</li>
+                            {% endfor %}
+                        </ul>
+
+                {% when 'links' %}
+                    <h3>{{ block.settings.title }}</h3>
+                        <ul>
+                            {% for link in linklists[block.settings.links_link_list].links %}
+                                <li>{{ link.title | link_to: link.url }}</li>
+                            {% endfor %}
+                        </ul>
+                {% endcase %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="footer__middle">
+        <img src="{{ 'visa.svg' | asset_url }}" alt="Visa">
+        <img src="{{ 'visa-electron.svg' | asset_url }}" alt="Visa Electron">
+        <img src="{{ 'mastercard.svg' | asset_url }}" alt="Mastercard">
+        <img src="{{ 'dankort.svg' | asset_url }}" alt="Dankort">
+    </div>
+
+    <div class="footer__bottom">
+        <p><span>&copy;</span> CLASSIC ROOM</p>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Footer Section",
+    "max_blocks": 4,
+    "blocks": [
+        {
+            "type": "info",
+            "name": "Info",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "info_title",
+                    "label": "Info Title"
+                },
+                {
+                    "type": "text",
+                    "id": "info_mail",
+                    "label": "Info Mail"
+                },
+                {
+                    "type": "text",
+                    "id": "info_mail_link",
+                    "label": "Info Mail Link",
+                    "info": "Skriv mailadresse, der skal linkes til"
+                },
+                {
+                    "type": "text",
+                    "id": "info_phone",
+                    "label": "Info Phone"
+                },
+                {
+                    "type": "text",
+                    "id": "info_phone_link",
+                    "label": "Info Phone Link",
+                    "info": "Skriv nummer uden +45"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "fb_checkbox",
+                    "label": "Facebook Icon?",
+                    "default": true
+                },
+                {
+                    "type": "checkbox",
+                    "id": "in_checkbox",
+                    "label": "Instagram Icon?",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "fb_link",
+                    "label": "Facebook Link"
+                },
+                {
+                    "type": "text",
+                    "id": "in_link",
+                    "label": "Instagram Link"
+                },
+                {
+                    "type": "text",
+                    "id": "customer_service",
+                    "label": "Kundeservice Title"
+                },
+                {
+                    "type": "text",
+                    "id": "open",
+                    "label": "Opening Hours"
+                },
+                {
+                    "type": "text",
+                    "id": "open_weekend",
+                    "label": "Opening Hours Weekend"
+                }
+            ]
+        },
+        {
+            "type": "newsletter",
+            "name": "Newsletter",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "newsletter_title",
+                    "label": "Newsletter Title"
+                },
+                {
+                    "type": "text",
+                    "id": "newsletter_placeholder",
+                    "label": "Newsletter Placeholder"
+                },
+                {
+                    "type": "text",
+                    "id": "btn_text",
+                    "label": "Newsletter Button Text"
+                }
+            ]
+        },
+        {
+            "type": "shop",
+            "name": "Shop",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Shop Title"
+                },
+                {
+                    "type": "link_list",
+                    "id": "shop_link_list",
+                    "label": "Shop Navigation"
+                }
+            ]
+        },
+        {
+            "type": "links",
+            "name": "Footer Links",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Vigtige Links Title"
+                },
+                {
+                    "type": "link_list",
+                    "id": "links_link_list",
+                    "label": "Vigtige Links Navigation"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

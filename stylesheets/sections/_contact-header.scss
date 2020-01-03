@@ -1,0 +1,97 @@
+.contact-header {
+    display: flex;
+    padding: 0 0 100px 70px;
+    @media (max-width: 900px) {
+        padding-left: 0;
+        flex-direction: column;
+    }
+
+    .contact-header__info {
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transform: translateY(20px);
+        @media (max-width: 900px) {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .contact-header__info__inner {
+            position: relative;
+            @media (max-width: 900px) {
+                margin-top: 80px;
+            }
+
+            .contact__info__img {
+                position: absolute;
+                top: -17%;
+                left: -30%;
+                width: 180px;
+                @media (max-width: 900px) {
+                    top: -20%;
+                    left: -15%;
+                    width: 160px;
+                }
+
+                img {
+                    animation: spin 50s infinite linear;
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .contact__title {
+                margin-bottom: 20px;
+            }
+
+            .contact__text {
+                max-width: 253px;
+                font-size: $font-size-sm;
+                line-height: normal;
+                margin-bottom: 50px;
+                letter-spacing: -2px;
+            }
+
+            .contact__phone {
+                display: inline-block;
+                margin-bottom: 30px;
+                line-height: normal;
+                letter-spacing: normal;
+                color: $color-medium-grey;
+            }
+
+            .contact__email {
+                display: inline-block;
+                margin-bottom: 60px;
+                line-height: normal;
+                letter-spacing: normal;
+                color: $color-medium-grey;
+            }
+
+            .contact__open-hrs {
+                font-size: $font-size-sm;
+                line-height: normal;
+                color: $color-brown-grey;
+                letter-spacing: -2px;
+            } 
+        }
+    }
+
+    .contact-header__image {
+        min-height: 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 60%;
+        opacity: 0;
+        transform: translateY(20px);
+        @media (max-width: 900px) {
+            width: 100%;
+            height: 410px;
+        }
+    }
+}

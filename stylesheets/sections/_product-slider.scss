@@ -1,0 +1,104 @@
+#product-slider {
+    background: $color-offwhite;
+    padding: 100px 0 100px 70px; 
+
+    .product-slider__inner {
+        padding-right: 50px;
+
+        .product-slider__title {
+            margin-bottom: 100px;
+            display: flex;
+            justify-content: space-between;
+
+            h1 {
+                max-width: 408px;
+
+                @media (max-width: 900px) {
+                    margin-bottom: 30px;
+                }
+            }
+
+            p {
+                max-width: 180px;
+                font-size: $font-size-sm;
+                line-height: $line-height-sm;
+                letter-spacing: -.2em;
+            }
+
+            @media (max-width: 900px) {
+                flex-direction: column;
+                margin-bottom: 50px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            padding-right: 20px;
+        }
+    }
+
+    .product-slider__controls {
+        display: flex;
+        padding-right: 120px;
+        justify-content: flex-end;
+        margin-bottom: 30px;
+
+        .prod-slider-prev,
+        .prod-slider-next {
+            cursor: pointer;
+
+            img {
+                width: 8px;
+            }
+        }
+
+        .prod-slider-prev {
+            margin-right: 20px;
+
+            svg {
+                transform: rotate(180deg);
+                margin-bottom: 1px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            padding-right: 40px;
+        }
+    }
+
+    .product-slider__wrapper {
+        overflow: visible;
+
+        .product-slider {
+            margin-right: 120px;
+
+            .slick-list {
+                margin-right: -20px;
+                overflow: visible;
+
+                .slick-slide {
+                    margin-right: 20px;
+
+                    div {
+                        .product-card {
+                            display: flex !important;
+
+                            .product-card__image {
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 900px) {
+                padding-right: 20px;
+                margin-right: 20px;
+            }
+        }
+    }
+
+    @media (max-width: 900px) {
+        padding-left: 20px;
+    }
+}

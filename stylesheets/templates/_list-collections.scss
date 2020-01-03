@@ -1,0 +1,20 @@
+#collection-list {
+    padding: 100px 70px;
+    @media (max-width: 900px) {
+        padding: 70px 20px;
+    }
+
+    .collection-list__title-wrapper {
+        margin-bottom: 40px;
+
+        .collection-list__title {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    }
+
+    .collection-list__collections-wrapper {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}

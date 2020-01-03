@@ -1,0 +1,179 @@
+.product-card {
+    background: $color-white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 378px;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    width: calc(100% / 3 - 20px);
+    margin: 10px;
+    @media (max-width: 900px) {
+        width: calc(100% / 2 - 20px);
+    }
+    @media (max-width: 700px) {
+        width: calc(100% - 20px);
+    }
+
+    .product-card__link {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .product-card__top {
+        margin: auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .product-card__image {
+            margin-bottom: 15px;
+
+            img {
+                max-width: 100%;
+                max-height: 300px;
+            }
+        }
+    }
+
+    .product-card__title {
+        margin-bottom: 15px;
+
+        h2 {
+            font-size: 24px;
+            line-height: 24px;
+            font-weight: 400;
+            color: $color-dark;
+            transition: .3s ease-in-out;
+        }
+    }
+
+    .product-card__price {
+        p {
+            font-size: $font-size-sm;
+            line-height: $line-height-sm;
+            color: $color-dark;
+        }
+
+        .product-card__vendor {
+            color: $color-brown-grey;
+            margin-bottom: 10px;
+        }
+
+        .product-card__price__inner {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+            .product-card__compare_at_price {
+                font-size: 10px;
+                color: $color-brown-grey;
+                text-decoration: line-through;
+                margin-left: 15px;
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 15px 16px 0 rgba(0,0,0,0.12);
+    }
+
+    &:hover .product-card__title h2 {  
+        color: $color-medium-grey;
+    }
+}
+
+.search-product-card {
+    background: $color-white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 378px;
+    transition: .3s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    width: calc(100% / 4 - 20px);
+    margin: 10px;
+    @media (max-width: 900px) {
+        width: calc(100% / 2 - 20px);
+    }
+    @media (max-width: 700px) {
+        width: calc(100% - 20px);
+    }
+
+    .product-card__link {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    .product-card__top {
+        margin: auto 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .product-card__image {
+            margin-bottom: 15px;
+
+            img {
+                max-width: 100%;
+                max-height: 300px;
+            }
+        }
+    }
+
+    .product-card__title {
+        margin-bottom: 15px;
+
+        h2 {
+            font-size: 24px;
+            line-height: 24px;
+            font-weight: 400;
+            color: $color-dark;
+            transition: .3s ease-in-out;
+        }
+    }
+
+    .product-card__price {
+        p {
+            font-size: $font-size-sm;
+            line-height: $line-height-sm;
+            color: $color-dark;
+        }
+
+        .product-card__vendor {
+            color: $color-brown-grey;
+            margin-bottom: 10px;
+        }
+
+        .product-card__price__inner {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+            .product-card__compare_at_price {
+                font-size: 10px;
+                color: $color-brown-grey;
+                text-decoration: line-through;
+                margin-left: 15px;
+            }
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 15px 16px 0 rgba(0,0,0,0.12);
+    }
+
+    &:hover .product-card__title h2 {  
+        color: $color-medium-grey;
+    }
+}

@@ -1,0 +1,69 @@
+<section id="newsletter" class="section">
+    <div class="newsletter__inner">
+        <div class="newsletter__image" {% unless section.settings.show_video %}style="background-image: url('{{ section.settings.image | img_url: 'master' }}')"{% endunless %}>
+            <div class="newsletter__video-wrapper">
+                {% if section.settings.show_video %}
+                    <div class="video-wrapper">
+                        <div class="video-wrapper__inner">
+                            <div style="padding-top: 56.25%; position: relative; overflow: hidden;"><iframe frameborder="0" allowfullscreen="" scrolling="no" allow="autoplay;fullscreen" src="https://onelineplayer.com/player.html?autoplay=true&autopause=false&muted=true&loop=true&url=https%3A%2F%2Fwww.dropbox.com%2Fs%2Fqpb3rs6sp763l7g%2FVideo%25201.0%2520%2528basic%252Bmodern%2529.mp4%3Fraw%3D1&poster=&time=false&progressBar=false&overlay=false&muteButton=false&fullscreenButton=false&style=light&quality=auto&playButton=false" style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px;"></iframe></div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% unless section.settings.show_video %}
+                <div class="overlay"></div>
+            {% endunless %}
+            <div class="newsletter__info__spinning-img">
+                <img src="{{ 'circle-text.svg' | asset_url }}" alt="Rotating image">
+            </div>
+        </div>
+
+        <div class="newsletter__info">
+            <div class="newsletter__info__text">
+                <h1>{{ section.settings.title }}</h1>
+            </div>
+            <div class="newsletter__info__form">
+                {% include 'newsletter-snippet' %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Newsletter Section",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_video",
+            "label": "Vis video i stedet for billede?",
+            "default": false
+        },
+        {
+            "type": "text",
+            "id": "video_link",
+            "label": "Video url"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "placeholder",
+            "label": "Placeholder text"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        }
+    ]
+}
+{% endschema %}

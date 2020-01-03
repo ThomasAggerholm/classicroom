@@ -1,0 +1,36 @@
+<div id="megamenu" class="section">
+    <div class="megamenu__container">
+        {% for block in section.blocks %}
+            {% assign collection = collections[block.settings.collection] %}
+            {% if block.settings.collection %}
+                <div class="megamenu__column">
+                    <h1 class="megamenu__column-title"><a href="{{ collection.url }}">{{ collection.title }}</a></h1>
+                        {% for product_type in collection.all_types %}
+                            {{ product_type | link_to_type }}
+                        {% endfor %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'mobile-menu' %}
+
+{% schema %}
+{
+    "name": "Mega Menu",
+    "blocks": [
+        {
+            "type": "collection",
+            "name": "Collection Column",
+            "settings": [
+                {
+                    "type": "collection",
+                    "id": "collection",
+                    "label": "Collection Navigation"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

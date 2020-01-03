@@ -1,0 +1,55 @@
+<div class="js-mini-cart-page-contents" data-cart-item-count="{{ cart.item_count }}">
+{% if cart.item_count > 0 %}
+    <form action="/cart" method="post" novalidate>
+        <div class="mini-cart__line-item__top">
+        {% for item in cart.items %}
+        <div class="mini-cart__line-item__item-wrapper">
+            <div class="mini-cart__line-item__image">
+                <a href="{{ item.url | within: collections.all }}">
+                    <img src="{{ item | img_url: 'small' }}" alt="{{ item.title | escape }}">
+                </a>
+            </div>
+
+            <div class="mini-cart__line-item__info__wrapper">
+                <div class="mini-cart__line-item__title">
+                    <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    {% if item.quantity > 1 %}<span class="mini-cart__quantity">x{{ item.quantity }}</span>{% endif %}
+                </div>
+
+                <div class="mini-cart__line-item__price__wrapper">
+                    <span class="mini-cart__vendor">{{ item.vendor }}</span>
+                    <span class="mini-cart__line-item__price">{{ item.price | money_without_trailing_zeros }}</span>
+                </div>
+            </div>
+        
+            <input class="visually-hidden" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+        </div>
+        {% endfor %}
+        </div>
+
+        <div class="mini-cart__line-item__bottom">
+            
+    
+            <div class="mini-cart__total">
+                <span class="mini-cart__total__title">{{ 'cart.mini_cart.total' | t }}</span>
+                <span class="mini-cart__total__sum">{{ cart.total_price | money_without_trailing_zeros }}</span>
+            </div>
+
+            <div class="mini-cart__button__wrapper">
+                <a href="/cart" class="mini-cart__button">{{ 'cart.mini_cart.to_cart_button' | t }}</a>
+            </div>
+        </div>
+    
+    </form>
+{% else %}
+<div class="mini-cart__line-item__bottom">
+        <div class="mini-cart__empty">
+            <span class="mini-cart__empty-text">{{ 'cart.mini_cart.empty' | t }}</span>
+        </div>
+
+        <div class="mini-cart__button__wrapper">
+            <a href="/collections" class="mini-cart__button">{{ 'cart.mini_cart.to_shop_button' | t }}</a>
+        </div>
+    </div>
+{% endif %}
+</div>

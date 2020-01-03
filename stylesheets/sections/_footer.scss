@@ -1,0 +1,111 @@
+#footer {
+    border-top: 1px solid $color-offwhite;
+    .footer__inner {
+        margin: 100px 70px 50px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #ebebeb;
+
+        div {
+            &:not(:last-child) {
+                margin-right: 100px;
+                margin-bottom: 50px;
+
+                @media (max-width: 900px) {
+                    margin-right: 0;
+                    margin-bottom: 70px;
+                }
+            }
+
+            h3 {
+                font-size: 24px;
+                line-height: 1;
+                color: $color-dark;
+                margin-bottom: 40px;
+                font-family: $font-family-BigCaslon;
+                font-weight: 400;
+
+                @media (max-width: 900px) {
+                    margin-bottom: 20px;
+                }
+            }
+
+            p,
+            a {
+                font-size: $font-size-xs;
+                line-height: 2.7;
+                color: $color-dark;
+            }
+
+            &:last-child {
+                @media (max-width: 900px) {
+                    margin-bottom: 70px;
+                }
+            }
+        }
+
+        .footer__inner__info {
+            display: flex;
+            flex-direction: column;
+            
+            .customer-service-title {
+                color: $color-brown-grey;
+            }
+
+            .footer__info__social {
+                margin: 20px 0;
+                display: flex;
+
+                .footer__info__social__icon {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.1);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &:first-child {
+                        margin-right: 20px;
+                    }
+                }
+            }
+
+            a {
+                &:hover {
+                    color: $color-brown-grey;
+                }
+            }
+        }
+
+        @media (max-width: 900px) {
+            margin-left: 50px;
+            flex-direction: column;
+        }
+
+        @media (max-width: 500px) {
+            margin: 40px 20px 20px 20px;
+        }
+    }
+
+    .footer__middle {
+        padding: 0 50px 30px 50px;
+        text-align: center;
+
+        @media (max-width: 900px) {
+            padding-top: 10px;
+        }
+    }
+
+    .footer__bottom {
+        background: $color-beige;
+        padding: 15px 50px;
+        color: $color-white;
+        text-align: center;
+
+        p {
+            font-size: $font-size-xs;
+            line-height: $line-height-xs;
+        }
+    }
+}
